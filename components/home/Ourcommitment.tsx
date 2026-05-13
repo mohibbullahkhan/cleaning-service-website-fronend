@@ -34,11 +34,11 @@ export default function OurCommitment() {
                         </motion.div>
 
                         {/* 01-03. The Title & Avatars Journey */}
-                        <motion.div
+                        <motion.div 
                             className="flex-1"
                             variants={{
                                 initial: { y: 250 },
-                                animate: { y: 0, transition: { delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                                animate: { y: 0, transition: { delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] as const } }
                             }}
                         >
                             <h2 className="text-4xl md:text-7xl lg:text-[100px] font-medium text-[#111] leading-[0.95] tracking-[-0.05em]">
@@ -173,7 +173,14 @@ export default function OurCommitment() {
 
 const columnVariants = {
     initial: { opacity: 0, x: -40 },
-    animate: { opacity: 1, x: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+    animate: { 
+        opacity: 1, 
+        x: 0, 
+        transition: { 
+            duration: 1.2, 
+            ease: [0.16, 1, 0.3, 1] as const 
+        } 
+    }
 };
 
 function FeatureColumn({ badge, title, desc, tags }: { badge: string; title: string; desc: string; tags?: string[] }) {
