@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+/* Tailwind v4 Theme Configuration */
+@theme {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-primary);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Premium Typography System (Cabinet Grotesk & General Sans) */
+  --font-display: 'Cabinet Grotesk', 'Satoshi', 'Inter', sans-serif;
+  --font-body:    'General Sans', 'Satoshi', 'Inter', sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Luxury Colors */
+  --color-bg: #FFFFFF;
+  --color-primary: #111111;
+  --color-body: #666666;
+  --color-muted: #999999;
+  --color-accent: #E8521A;
+  --color-star: #F59E0B;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Spacing & Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Refinement */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--color-primary);
+  letter-spacing: -0.04em;
+}
+
+h1 { font-size: clamp(64px, 12vw, 120px); font-weight: 400; }
+h2 { font-size: clamp(32px, 5vw, 64px); font-weight: 500; }
+h3 { font-size: clamp(24px, 3vw, 40px); font-weight: 500; }
+
+p {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-body);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* UI Elements */
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 16px 32px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(232, 82, 26, 0.2);
+}
+
+/* Entrance Animations */
+@keyframes aFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes aSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes aSlideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Animation Classes - Slower and Smoother */
+.animate-fade-in { animation: aFadeIn 1.8s ease forwards; }
+.animate-slide-up { opacity: 0; animation: aSlideUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-down { opacity: 0; animation: aSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-slide-in-left { opacity: 0; animation: aSlideInLeft 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.shadow-premium {
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
 }
