@@ -34,7 +34,7 @@ export default function OurCommitment() {
                         </motion.div>
 
                         {/* 01-03. The Title & Avatars Journey */}
-                        <motion.div 
+                        <motion.div
                             className="flex-1"
                             variants={{
                                 initial: { y: 250 },
@@ -173,16 +173,16 @@ export default function OurCommitment() {
 
 const columnVariants = {
     initial: { opacity: 0, x: -40 },
-    animate: { 
-        opacity: 1, 
-        x: 0, 
-        transition: { 
-            duration: 1.2, 
-            ease: [0.16, 1, 0.3, 1] as const 
-        } 
+    animate: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 1.2,
+            ease: [0.16, 1, 0.3, 1] as const
+        }
     }
 };
-
+// home page complete
 function FeatureColumn({ badge, title, desc, tags }: { badge: string; title: string; desc: string; tags?: string[] }) {
     return (
         <motion.div
