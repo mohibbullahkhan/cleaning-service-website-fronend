@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import Button from "./ui/Button";
 
 export default function Footer() {
   return (
@@ -34,9 +37,13 @@ export default function Footer() {
                   placeholder="Your email address"
                   className="flex-1 bg-white/5 border border-white/10 rounded-l-2xl px-6 py-4 text-white focus:outline-none focus:border-[#E8521A] transition-colors"
                 />
-                <button className="bg-[#E8521A] hover:bg-[#FF7A1A] text-white font-bold px-6 py-4 rounded-r-2xl transition-all">
+                <Button 
+                  variant="primary" 
+                  className="rounded-l-none"
+                  onClick={() => {}}
+                >
                   Join
-                </button>
+                </Button>
               </div>
               <p className="text-xs text-gray-500">Stay updated with our latest offers and cleaning tips.</p>
             </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Button from './ui/Button'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
@@ -44,7 +45,7 @@ export default function Navbar() {
         `}
         style={{ fontFamily: 'var(--font-dm-sans), DM Sans, sans-serif' }}
       >
-        <div className="flex items-center justify-between px-6 sm:px-10 lg:px-12 h-[68px]">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-10 lg:px-12 h-[68px]">
 
           {/* ── Logo ── */}
           <Link href="/" className="flex items-center gap-2 no-underline shrink-0 z-10 animate-slide-down">
@@ -92,23 +93,13 @@ export default function Navbar() {
           <div className="flex items-center gap-3 z-10 animate-fade-in" style={{ animationDelay: '800ms' }}>
 
             {/* Book button — always visible */}
-            <Link
+            <Button
               href="/contact"
-              className="
-                flex items-center gap-2
-                bg-[#E8521A] text-white
-                text-[13px] sm:text-[14px] font-semibold
-                pl-4 sm:pl-5 pr-[8px] sm:pr-[10px] py-[8px] sm:py-[9px]
-                rounded-full no-underline
-                transition-all duration-200
-                hover:opacity-85 hover:-translate-y-0.5
-              "
+              size="sm"
+              showArrow
             >
               Book
-              <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/25 flex items-center justify-center text-[13px] font-bold leading-none">
-                •
-              </span>
-            </Link>
+            </Button>
 
             {/* Hamburger — mobile & tablet only */}
             <button
@@ -178,19 +169,14 @@ export default function Navbar() {
 
             {/* Full-width CTA at bottom of mobile menu */}
             <li className="mt-3 pt-4 border-t border-black/[0.07]">
-              <Link
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="
-                  flex items-center justify-center gap-2 w-full
-                  bg-[#E8521A] text-white
-                  text-[14px] font-semibold
-                  px-5 py-[13px] rounded-xl no-underline
-                  transition-opacity duration-200 hover:opacity-85
-                "
-              >
-                Book a Cleaner →
-              </Link>
+                <Button
+                  href="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  showArrow
+                  className="w-full"
+                >
+                  Book a Cleaner
+                </Button>
             </li>
           </ul>
         </div>

@@ -95,12 +95,13 @@ export default function ContactPage() {
                     <div className="w-24 h-24 bg-[#111] text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-10 shadow-3xl">✓</div>
                     <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Thank You!</h2>
                     <p className="text-gray-500 font-medium text-lg max-w-xs mx-auto">We've received your message and will reach out shortly.</p>
-                    <button
+                    <Button
                       onClick={() => setIsSubmitted(false)}
-                      className="mt-12 bg-[#EFEFED] text-[#111] font-bold px-10 py-4 rounded-full hover:bg-[#111] hover:text-white transition-all"
+                      variant="outline"
+                      size="md"
                     >
                       Send Another
-                    </button>
+                    </Button>
                   </div>
                 ) : (
                   <form className="space-y-10 relative z-10" onSubmit={handleSubmit}>
@@ -168,9 +169,10 @@ export default function ContactPage() {
                     </div>
 
                     <Button
-                      onClick={() => handleSubmit}
-                      className="w-full py-6 rounded-[28px] text-lg font-bold shadow-2xl bg-[#E8521A] hover:bg-[#111] transition-all duration-300"
+                      type="submit"
+                      className="w-full"
                       variant="primary"
+                      showArrow
                     >
                       Request a Quote
                     </Button>

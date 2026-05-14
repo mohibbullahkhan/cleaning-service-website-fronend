@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Button from "../ui/Button";
 
 export default function OurCommitment() {
     return (
@@ -24,7 +24,7 @@ export default function OurCommitment() {
                             className="shrink-0"
                             variants={{
                                 initial: { opacity: 0, x: -20 },
-                                animate: { opacity: 1, x: 0, transition: { delay: 2.2, duration: 0.8 } }
+                                animate: { opacity: 1, x: 0, transition: { delay: 1.4, duration: 0.6 } }
                             }}
                         >
                             <div className="inline-flex items-center gap-3 bg-[#FAFAFA] border border-gray-100 px-5 py-2.5 rounded-full shadow-sm">
@@ -38,7 +38,7 @@ export default function OurCommitment() {
                             className="flex-1"
                             variants={{
                                 initial: { y: 250 },
-                                animate: { y: 0, transition: { delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] as const } }
+                                animate: { y: 0, transition: { delay: 0.8, duration: 1, ease: [0.16, 1, 0.3, 1] as const } }
                             }}
                         >
                             <h2 className="text-4xl md:text-7xl lg:text-[100px] font-medium text-[#111] leading-[0.95] tracking-[-0.05em]">
@@ -55,7 +55,7 @@ export default function OurCommitment() {
                                     className="inline-flex items-center mx-6 align-middle"
                                     variants={{
                                         initial: { opacity: 0, x: 40, scale: 0.9 },
-                                        animate: { opacity: 1, x: 0, scale: 1, transition: { delay: 0.6, duration: 0.8 } }
+                                        animate: { opacity: 1, x: 0, scale: 1, transition: { delay: 0.4, duration: 0.6 } }
                                     }}
                                 >
                                     <div className="flex -space-x-4 mr-6">
@@ -65,7 +65,7 @@ export default function OurCommitment() {
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="bg-[#EFEFED] px-5 py-2.5 rounded-[12px] text-[8px] md:text-sm font-semibold text-gray-500 whitespace-nowrap">
+                                    <div className="bg-[#EFEFED] px-5 py-2.5 rounded-[12px] text-[8px] md:text-sm font-semibold text-gray-500 whitespace-nowrap tracking-normal">
                                         Over 2K people proved
                                     </div>
                                 </motion.span>
@@ -73,7 +73,7 @@ export default function OurCommitment() {
                                 <motion.span
                                     variants={{
                                         initial: { opacity: 0 },
-                                        animate: { opacity: 1, transition: { delay: 1, duration: 0.8 } }
+                                        animate: { opacity: 1, transition: { delay: 0.6, duration: 0.6 } }
                                     }}
                                 >
                                     Your Average <br /> Cleaning Service
@@ -89,7 +89,7 @@ export default function OurCommitment() {
                     whileInView="animate"
                     viewport={{ once: true, amount: 0.1 }}
                     variants={{
-                        animate: { transition: { staggerChildren: 0.15, delayChildren: 2.6 } }
+                        animate: { transition: { staggerChildren: 0.1, delayChildren: 1.6 } }
                     }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-20"
                 >
@@ -134,7 +134,7 @@ export default function OurCommitment() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
                                 <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Flexibility</span>
                             </div>
-                            <h3 className="text-[32px] font-medium text-[#111] leading-[1.2] tracking-tight">Cleaning That Fits Your Schedule</h3>
+                            <h3 className="text-[26px] font-medium text-[#111] leading-[1.2] tracking-tight ">Cleaning That Fits Your Schedule</h3>
                         </div>
                     </motion.div>
 
@@ -158,10 +158,9 @@ export default function OurCommitment() {
                             }}
                             className="pt-20 flex justify-end"
                         >
-                            <Link href="/contact" className="group bg-[#E8521A] hover:bg-[#111] text-white px-12 py-5 rounded-full font-bold text-sm tracking-widest uppercase flex items-center gap-5 transition-all shadow-xl">
+                            <Button href="/contact" showArrow>
                                 Book
-                                <span className="w-2.5 h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform" />
-                            </Link>
+                            </Button>
                         </motion.div>
                     </div>
 
@@ -177,7 +176,7 @@ const columnVariants = {
         opacity: 1,
         x: 0,
         transition: {
-            duration: 1.2,
+            duration: 0.8,
             ease: [0.16, 1, 0.3, 1] as const
         }
     }

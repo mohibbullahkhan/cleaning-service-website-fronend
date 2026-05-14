@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Button from "../ui/Button";
 
 export default function AboutUs() {
     const [visible, setVisible] = useState(false);
@@ -41,11 +42,9 @@ export default function AboutUs() {
                     {/* Main Mission Text */}
                     <div className="flex-1 lg:max-w-[800px]">
                         <h2
-                            className={`text-[#111] leading-[1.2] tracking-[-0.03em] ${fade("delay-100")}`}
+                            className={`text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px] ${fade("delay-100")}`}
                             style={{
-                                fontFamily: "var(--font-roboto), Roboto, sans-serif",
-                                fontSize: "clamp(32px, 5vw, 64px)",
-                                fontWeight: 400,
+                                fontFamily: "var(--font-space-mono), monospace",
                             }}
                         >
                             At OmahResik, we believe a clean home is happy. Our mission is to <span className="bg-[#CBDDFF] px-2 rounded-md">provide top notch</span> cleaning service
@@ -74,9 +73,9 @@ export default function AboutUs() {
                                 </div>
                                 <p className="text-[8px] font-bold text-[#111]">AeroClean 3000</p>
                             </div>
-                            <button className="bg-[#FF7A1A] text-white text-[8px] font-bold px-3 py-1.5 rounded-full hover:bg-[#111] transition-colors">
+                            <Button size="sm" className="text-[8px] px-3 py-1.5 min-h-0 h-auto rounded-[8px]">
                                 View
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +86,7 @@ export default function AboutUs() {
                     {/* Card 1 & 2 Wrapper with Overlay */}
                     <div className="lg:col-span-2 grid grid-cols-2 gap-6 relative">
                         {/* Background Card 1 */}
-                        <div className={`relative rounded-[40px] bg-[#EFEFED] aspect-[4/5] flex items-center justify-center p-4 ${fade("delay-300")}`}>
+                        <div className={`relative rounded-[30px] bg-[#EFEFED] aspect-[4/5] flex items-center justify-center p-4 ${fade("delay-300")}`}>
                             <Image
                                 src="/1.webp"
                                 alt="Device 1"
@@ -97,7 +96,7 @@ export default function AboutUs() {
                             />
                         </div>
                         {/* Background Card 2 */}
-                        <div className={`relative rounded-[40px] bg-[#EFEFED] aspect-[4/5] flex items-center justify-center p-4 ${fade("delay-400")}`}>
+                        <div className={`relative rounded-[30px] bg-[#EFEFED] aspect-[4/5] flex items-center justify-center p-4 ${fade("delay-400")}`}>
                             <Image
                                 src="/2.jpeg"
                                 alt="Device 2"
@@ -108,8 +107,8 @@ export default function AboutUs() {
                         </div>
 
                         {/* Floating Overlay Card (Centered between the two) */}
-                        <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 w-[75%] bg-white/95 backdrop-blur-md rounded-[20px] p-3 shadow-2xl border border-white/50 z-10 ${fade("delay-500")}`}>
-                            <p className="text-[10px] font-bold text-[#111] mb-2 text-center">Advanced Technology</p>
+                        <div className={`absolute bottom-0 inset-x-4 bg-white/95 backdrop-blur-md rounded-[15px] p-2 shadow-2xl border border-white/50 z-30 ${fade("delay-500")}`}>
+                            <p className="text-[10px] font-bold text-[#111] mb-1 text-center">Advanced Technology</p>
                             <div className="space-y-1.5">
                                 <div className="flex justify-between items-end px-1">
                                     <div>
@@ -136,7 +135,7 @@ export default function AboutUs() {
                     </div>
 
                     {/* Card 4: Air Purifier (Uniform Aspect Ratio) */}
-                    <div className={`relative rounded-[40px] bg-[#EFEFED] overflow-hidden aspect-[4/5] flex items-center justify-center p-6 ${fade("delay-700")}`}>
+                    <div className={`relative rounded-[30px] bg-[#EFEFED] overflow-hidden aspect-[4/5] flex items-center justify-center p-6 ${fade("delay-700")}`}>
                         <Image
                             src="/3.jpeg"
                             alt="Purifier"
@@ -147,7 +146,7 @@ export default function AboutUs() {
                     </div>
 
                     {/* Card 5: Cleaning Device (Uniform Aspect Ratio) */}
-                    <div className={`relative rounded-[40px] bg-[#EFEFED] overflow-hidden aspect-[4/5] flex items-center justify-center p-6 ${fade("delay-800")}`}>
+                    <div className={`relative rounded-[30px] bg-[#EFEFED] overflow-hidden aspect-[4/5] flex items-center justify-center p-6 ${fade("delay-800")}`}>
                         <Image
                             src="/4.png"
                             alt="Cleaning Device"

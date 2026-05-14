@@ -63,11 +63,11 @@ export default function TestimonialSection() {
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24 mb-20">
         <div className="flex flex-col md:flex-row items-end justify-between gap-8">
           <div className="max-w-[600px]">
-             <div className="inline-flex items-center gap-3 bg-white border border-gray-100 px-5 py-2.5 rounded-full shadow-sm mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
-                <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Testimonials</span>
+            <div className="inline-flex items-center gap-3 bg-white border border-gray-100 px-5 py-2.5 rounded-full shadow-sm mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
+              <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Testimonials</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-medium text-[#111] leading-[1.05] tracking-tight">
+            <h2 className="text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px]" style={{ fontFamily: 'var(--font-space-mono), monospace' }}>
               Trusted by those <br /> who value detail.
             </h2>
           </div>

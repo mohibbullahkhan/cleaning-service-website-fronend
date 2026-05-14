@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import PageHero from "@/components/ui/PageHero";
+import Button from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -63,9 +66,14 @@ export default function BlogPage() {
           {/* Categories Bar */}
           <div className="flex flex-wrap gap-4 mb-16 justify-center">
              {['All Posts', 'Cleaning Hacks', 'Sustainability', 'Healthy Living', 'Office Care'].map((cat, i) => (
-               <button key={i} className={`px-8 py-3 rounded-full font-black text-[10px] tracking-widest uppercase transition-all ${i === 0 ? 'bg-[#111] text-white shadow-xl' : 'bg-[#EFEFED] text-gray-500 hover:bg-gray-200'}`}>
+               <Button 
+                 key={i} 
+                 variant={i === 0 ? "black" : "outline"} 
+                 size="sm"
+                 className={i === 0 ? "shadow-xl" : "border-gray-100 !text-gray-500 hover:!border-[#111] hover:!text-[#111]"}
+               >
                  {cat}
-               </button>
+               </Button>
              ))}
           </div>
 
@@ -122,10 +130,9 @@ export default function BlogPage() {
                     {post.excerpt}
                   </p>
                   <div className="pt-4">
-                    <Link href={`/blog/${idx}`} className="inline-flex items-center gap-3 text-[#111] font-black text-xs uppercase tracking-widest group-hover:text-[#E8521A] transition-colors">
-                      Read Full Article 
-                      <span className="w-8 h-8 rounded-full bg-[#EEF5E0] flex items-center justify-center text-[#111] group-hover:bg-[#E8521A] group-hover:text-white transition-all">→</span>
-                    </Link>
+                    <Button href={`/blog/${idx}`} variant="outline" size="sm" showArrow className="!border-none !px-0 hover:!translate-x-2">
+                      Read Full Article
+                    </Button>
                   </div>
                 </div>
               </article>
@@ -134,11 +141,11 @@ export default function BlogPage() {
 
           {/* Pagination */}
           <div className="mt-32 flex justify-center items-center gap-4">
-            <button className="w-16 h-16 rounded-full bg-[#111] text-white flex items-center justify-center font-black text-sm shadow-2xl">1</button>
-            <button className="w-16 h-16 rounded-full border-2 border-gray-100 flex items-center justify-center font-black text-sm text-[#111] hover:bg-[#EEF5E0] transition-all">2</button>
-            <button className="w-16 h-16 rounded-full border-2 border-gray-100 flex items-center justify-center font-black text-sm text-[#111] hover:bg-[#EEF5E0] transition-all">3</button>
+            <Button variant="black" className="w-16 h-16 !p-0">1</Button>
+            <Button variant="outline" className="w-16 h-16 !p-0 !border-gray-100 !text-gray-400 hover:!border-[#111] hover:!text-[#111]">2</Button>
+            <Button variant="outline" className="w-16 h-16 !p-0 !border-gray-100 !text-gray-400 hover:!border-[#111] hover:!text-[#111]">3</Button>
             <div className="w-8" />
-            <button className="px-10 h-16 rounded-full border-2 border-[#111] flex items-center justify-center font-black text-xs uppercase tracking-widest text-[#111] hover:bg-[#111] hover:text-white transition-all">Next Page</button>
+            <Button variant="outline" showArrow className="px-10 h-16 border-2 !border-[#111]">Next Page</Button>
           </div>
         </div>
       </section>
@@ -161,9 +168,14 @@ export default function BlogPage() {
                 placeholder="Your primary email" 
                 className="flex-1 bg-white border-none rounded-3xl px-8 py-6 text-[#111] placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all font-bold"
               />
-              <button className="bg-[#111] text-white font-black px-10 py-6 rounded-3xl hover:bg-white hover:text-[#111] transition-all uppercase tracking-widest text-xs">
+              <Button 
+                variant="black" 
+                showArrow
+                className="px-10 py-6"
+                onClick={() => {}}
+              >
                 Subscribe
-              </button>
+              </Button>
             </form>
           </div>
         </div>

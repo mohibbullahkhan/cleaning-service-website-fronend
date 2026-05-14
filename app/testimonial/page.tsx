@@ -66,17 +66,15 @@ export default function TestimonialPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-center gap-4 mb-24">
             {["All", "Home", "Office", "Deep Clean"].map((f) => (
-              <button
+              <Button
                 key={f}
+                variant={filter === f ? "primary" : "outline"}
+                size="md"
                 onClick={() => setFilter(f)}
-                className={`px-10 py-4 rounded-full font-black text-xs tracking-widest uppercase transition-all duration-300 ${
-                  filter === f
-                    ? "bg-[#E8521A] text-white shadow-2xl shadow-orange-900/20 scale-105"
-                    : "bg-[#EFEFED] text-[#666] hover:bg-gray-200"
-                }`}
+                className={filter === f ? "shadow-2xl shadow-orange-900/20 scale-105" : "!border-gray-100 !text-[#666] hover:!border-[#111] hover:!text-[#111]"}
               >
                 {f}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -150,12 +148,12 @@ export default function TestimonialPage() {
                Join the community of thousands who have upgraded their living standard with OmahResik.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-               <Button href="/contact" variant="primary" size="lg" className="px-12 py-6 rounded-full text-lg shadow-2xl">
+               <Button href="/contact" variant="primary" size="lg" showArrow className="px-12 py-6 text-lg shadow-2xl">
                   Book Your Visit
                </Button>
-               <button className="bg-white text-[#111] font-black px-12 py-6 rounded-full border-2 border-transparent hover:border-[#111] transition-all text-lg shadow-xl">
+               <Button variant="outline" size="lg" className="px-12 py-6 text-lg shadow-xl !bg-white">
                   Submit a Review
-               </button>
+               </Button>
             </div>
          </div>
       </section>

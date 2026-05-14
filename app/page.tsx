@@ -1,7 +1,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import TrustBar from "@/components/home/TrustBar";
 import AboutUs from "@/components/home/Aboutus";
-import Process from "@/components/home/Process";
+
 import OurCommitment from "@/components/home/Ourcommitment";
 import OurService from "@/components/home/Ourservices";
 import ServiceCards from "@/components/home/ServiceCards";
@@ -52,10 +52,10 @@ export default function Home() {
             Join 2,000+ satisfied clients who trust OmahResik for clinical-grade precision and unmatched reliability.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button href="/contact" variant="primary" size="lg" className="px-12 py-6 rounded-full text-lg shadow-2xl">
+            <Button href="/contact" variant="primary" size="lg" showArrow className="px-12 py-6 text-lg shadow-2xl">
               Start Your Journey
             </Button>
-            <Button href="/service" variant="outline" size="lg" className="px-12 py-6 rounded-full text-lg">
+            <Button href="/service" variant="outline" size="lg" className="px-12 py-6 text-lg">
               View Our Plans
             </Button>
           </div>

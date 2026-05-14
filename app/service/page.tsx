@@ -98,7 +98,7 @@ export default function ServicePage() {
                     <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Starting from</p>
                     <p className="text-4xl font-black text-[#111]">{service.price}</p>
                   </div>
-                  <Button href="/contact" variant="primary" size="lg" className="rounded-full px-10 py-5">
+                  <Button href="/contact" variant="primary" size="lg" showArrow className="px-10 py-5">
                     Book Service
                   </Button>
                 </div>
@@ -109,13 +109,13 @@ export default function ServicePage() {
       </section>
 
       {/* Satisfaction Guarantee Bar */}
-      <section className="bg-[#111] py-20 px-6">
+      <section className="bg-white py-24 px-6 border-y border-gray-100">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 text-center md:text-left">
            <div className="space-y-4">
-              <h3 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>The OmahResik Guarantee</h3>
-              <p className="text-gray-400 font-medium text-lg">If you're not 100% satisfied, we'll re-clean for free.</p>
+              <h3 className="text-3xl md:text-4xl font-bold text-[#111]" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>The OmahResik Guarantee</h3>
+              <p className="text-gray-500 font-medium text-lg">If you're not 100% satisfied, we'll re-clean for free.</p>
            </div>
-           <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center text-4xl border border-white/20">🛡️</div>
+           <div className="w-24 h-24 bg-[#F8F9FA] rounded-[32px] flex items-center justify-center text-4xl border border-gray-100 shadow-sm">🛡️</div>
         </div>
       </section>
 
@@ -124,7 +124,7 @@ export default function ServicePage() {
         <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
           Ready to experience the gold standard?
         </h2>
-        <Button href="/contact" size="lg" className="px-12 rounded-full shadow-2xl">
+        <Button href="/contact" size="lg" showArrow className="px-12 shadow-2xl">
           Get a Free Estimate
         </Button>
       </section>

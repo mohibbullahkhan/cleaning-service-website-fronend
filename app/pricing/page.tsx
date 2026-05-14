@@ -87,7 +87,8 @@ export default function PricingPage() {
               <Button 
                 href="/contact" 
                 variant={plan.popular ? "primary" : "outline"} 
-                className={`w-full py-6 rounded-[24px] font-black text-sm tracking-widest uppercase ${plan.popular ? "bg-[#E8521A] hover:bg-white hover:text-[#111] border-none shadow-2xl shadow-orange-900/20" : ""}`}
+                className="w-full"
+                showArrow
               >
                 {plan.buttonText}
               </Button>
@@ -101,7 +102,7 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto text-center">
            <h2 className="text-4xl font-black mb-8" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Need a custom solution?</h2>
            <p className="text-xl text-gray-500 font-medium mb-12">For spaces larger than 3,000 sq ft or specialized commercial needs, we offer bespoke pricing packages.</p>
-           <Button href="/contact" variant="outline" className="px-12 py-5 rounded-full border-2 border-[#111] font-bold">Request Custom Quote</Button>
+           <Button href="/contact" variant="outline" size="lg" showArrow>Request Custom Quote</Button>
         </div>
       </section>
 
@@ -134,7 +135,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 px-6 bg-[#111] text-white">
+      <section className="py-24 px-6 bg-white text-[#111] border-t border-gray-100">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-black mb-20 text-center" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
             Frequently Asked Questions
@@ -146,12 +147,12 @@ export default function PricingPage() {
               { q: "Are your specialists fully insured?", a: "Yes. Every OmahResik professional is rigorously background-checked, insured, and certified." },
               { q: "How is billing handled?", a: "Secure digital payments are processed post-service. We accept all major credit cards and digital wallets." }
             ].map((faq, i) => (
-              <div key={i} className="border-b border-white/10 pb-10 group cursor-pointer">
+              <div key={i} className="border-b border-gray-100 pb-10 group cursor-pointer">
                 <h3 className="text-xl font-bold mb-6 flex justify-between items-center group-hover:text-[#E8521A] transition-colors">
                   {faq.q}
-                  <span className="text-3xl text-white/20 group-hover:text-[#E8521A] group-hover:rotate-45 transition-all">+</span>
+                  <span className="text-3xl text-gray-200 group-hover:text-[#E8521A] group-hover:rotate-45 transition-all">+</span>
                 </h3>
-                <p className="text-gray-400 font-medium leading-relaxed hidden group-hover:block transition-all animate-slide-up">
+                <p className="text-gray-500 font-medium leading-relaxed hidden group-hover:block transition-all animate-slide-up">
                   {faq.a}
                 </p>
               </div>

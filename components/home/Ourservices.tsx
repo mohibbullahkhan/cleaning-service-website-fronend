@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Button from "../ui/Button";
 
 const bgImages = [
     "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1600&q=80",
@@ -47,21 +47,20 @@ export default function OurService() {
                         </div>
                     </div>
                     <div className="space-y-8">
-                        <h2 className={`text-4xl md:text-7xl font-medium text-[#111] leading-[1.1] tracking-[-0.03em] max-w-[900px] ${fade("delay-100")}`}>
+                        <h2 className={`text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px] ${fade("delay-100")}`} style={{ fontFamily: 'var(--font-space-mono), monospace' }}>
                             Discover our home-cleaning services tailored to your space and schedule.
                         </h2>
                         <div className={`${fade("delay-200")}`}>
-                            <Link href="/contact" className="group bg-[#FF7A1A] text-white px-7 py-3 rounded-full font-bold text-[11px] tracking-widest uppercase flex items-center gap-4 w-fit shadow-2xl transition-all hover:scale-105 active:scale-95">
+                            <Button href="/contact" showArrow>
                                 Book
-                                <span className="w-1 h-1 rounded-full bg-white" />
-                            </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>
 
                 {/* Dashboard Card - COMPACT PIXEL PERFECT */}
                 <div className={`relative group ${fade("delay-400")}`}>
-                    <div className="relative rounded-[48px] overflow-hidden aspect-[16/9.5] shadow-[0_80px_140px_-30px_rgba(0,0,0,0.15)]">
+                    <div className="relative rounded-[32px] md:rounded-[48px] overflow-hidden aspect-[3/4.5] md:aspect-[16/9.5] shadow-[0_80px_140px_-30px_rgba(0,0,0,0.15)]">
 
                         {/* Background Carousel */}
                         <div className="absolute inset-0">
@@ -80,20 +79,27 @@ export default function OurService() {
                         <div className="absolute top-12 right-12 text-white/50 text-xl font-medium tracking-tight">(01)</div>
 
                         {/* UI Components Container */}
-                        <div className="absolute bottom-10 left-10 right-10 flex flex-col items-start z-[20]">
+                        <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 flex flex-col items-start z-[20]">
 
                             {/* Top Card Row - COMPACT & STANDALONE GAPS */}
-                            <div className="flex items-end gap-3 w-full">
+                            <div className="flex flex-col md:flex-row items-stretch md:items-end gap-2 md:gap-3 w-full">
 
                                 {/* Card 1: Branding (Merged with Dashboard) */}
-                                <div className="bg-white/80  rounded-t-[32px] rounded-br-[32px] pt-3 pl-3 pr-3 pb-8 border-t border-x border-white/80 w-[280px] h-[100px] flex items-center justify-center  -mb-[1px] relative z-20">
-                                    <div className="bg-[#0A0A0A] rounded-[12px]  w-full h-full flex items-center justify-center text-white text-[16px] font-medium p-4 mt-1">
+                                <div className="bg-white/80 backdrop-blur-3xl rounded-t-[15px] md:rounded-t-[22px] pt-3 pl-3 pr-3 pb-6 md:pb-8 border-t border-x border-white/40 w-full md:w-[280px] h-auto md:h-[100px] flex items-center justify-center -mb-[1px] relative z-20">
+                                    <div className="bg-[#0A0A0A] rounded-[10px] md:rounded-[12px] w-full h-full flex items-center justify-center text-white text-[13px] md:text-[16px] font-medium p-3 md:p-4 mt-1">
                                         Cleaning Services
+                                    </div>
+
+                                    {/* Inverted Corner - Right Side */}
+                                    <div className="absolute bottom-0 -right-[32px] w-[32px] h-[32px] pointer-events-none hidden md:block">
+                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 32 V0 C0 17.6731 14.3269 32 32 32 H0 Z" fill="rgba(255,255,255,0.8)" />
+                                        </svg>
                                     </div>
                                 </div>
 
                                 {/* Card 2: Standard (With Gap) */}
-                                <div className="bg-white/80 backdrop-blur-3xl rounded-[32px] p-3 flex items-center gap-4 shadow-2xl border border-white/50 w-[280px] h-[85px] mb-3">
+                                <div className="hidden md:flex bg-white/80 backdrop-blur-3xl rounded-[22px] p-3 items-center gap-4 shadow-2xl border border-white/50 w-[280px] h-[85px] mb-3">
                                     <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 relative shrink-0">
                                         <Image src="https://i.pravatar.cc/100?img=1" alt="Standard" fill className="object-cover" />
                                     </div>
@@ -105,7 +111,7 @@ export default function OurService() {
                                 </div>
 
                                 {/* Card 3: Deep Cleaning (With Gap) */}
-                                <div className="bg-white/80 backdrop-blur-3xl rounded-[32px] p-3 flex items-center gap-4 shadow-2xl border border-white/50 w-[280px] h-[85px] mb-3">
+                                <div className="hidden md:flex bg-white/80 backdrop-blur-3xl rounded-[22px] p-3 items-center gap-4 shadow-2xl border border-white/50 w-[280px] h-[85px] mb-3">
                                     <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-xl overflow-hidden relative shrink-0">
                                         <Image src="https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=100&q=80" alt="Deep" fill className="object-cover" />
                                     </div>
@@ -118,27 +124,26 @@ export default function OurService() {
                             </div>
 
                             {/* Main Dashboard Card (Merged with Card 1) */}
-                            <div className="w-full bg-white/80 backdrop-blur-3xl rounded-[40px] rounded-tl-none p-8 border border-white/40 shadow-2xl relative z-10">
-                                <div className="grid grid-cols-4 gap-12">
+                            <div className="w-full bg-white/80 backdrop-blur-3xl rounded-b-[24px] md:rounded-b-[40px] rounded-t-none md:rounded-tr-[40px] md:rounded-tl-none p-4 md:p-8 border border-white/40 shadow-2xl relative z-10">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-12">
                                     {[
-                                        { time: "06.00", label: "GENERAL AREA" },
+                                        { time: "06.00", label: "GENERAL" },
                                         { time: "08.00", label: "KITCHEN" },
                                         { time: "09.00", label: "BATHROOM" },
                                         { time: "10.00", label: "BEDROOM" }
                                     ].map((item, i) => (
-                                        <div key={i} className="space-y-6 group/item">
-                                            <p className="text-[10px] font-bold text-gray-400 tracking-wider">{item.time}</p>
-                                            <div className="flex items-end gap-[3px] h-10">
-                                                {[...Array(18)].map((_, j) => (
-                                                    <div key={j} className="w-[2.5px] rounded-full bg-gray-200 transition-all duration-700 group-hover/item:bg-[#E8521A]" style={{ height: `${30 + Math.random() * 70}%` }} />
+                                        <div key={i} className={`space-y-3 md:space-y-6 group/item ${i > 1 ? 'hidden sm:block md:block' : ''}`}>
+                                            <p className="text-[8px] md:text-[10px] font-bold text-gray-400 tracking-wider">{item.time}</p>
+                                            <div className="flex items-end gap-[2px] md:gap-[3px] h-6 md:h-10">
+                                                {[...Array(12)].map((_, j) => (
+                                                    <div key={j} className="w-[1.5px] md:w-[2.5px] rounded-full bg-gray-200 transition-all duration-700 group-hover/item:bg-[#E8521A]" style={{ height: `${30 + Math.random() * 70}%` }} />
                                                 ))}
                                             </div>
                                             <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-2.5">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
-                                                    <span className="text-[10px] font-bold text-[#111] tracking-widest">{item.label}</span>
+                                                <div className="flex items-center gap-1.5 md:gap-2.5">
+                                                    <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-[#E8521A]" />
+                                                    <span className="text-[8px] md:text-[10px] font-bold text-[#111] tracking-widest uppercase">{item.label}</span>
                                                 </div>
-                                                <span className="text-[10px] text-gray-300 font-black">»</span>
                                             </div>
                                         </div>
                                     ))}

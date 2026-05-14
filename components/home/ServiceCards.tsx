@@ -63,11 +63,9 @@ export default function ServiceCards() {
 
                         {/* Title */}
                         <h3
-                            className="text-[#111] leading-tight"
+                            className="text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-5xl"
                             style={{
-                                fontFamily: "var(--font-roboto), Roboto, sans-serif",
-                                fontSize: "clamp(32px, 4vw, 48px)",
-                                fontWeight: 900
+                                fontFamily: "var(--font-space-mono), monospace",
                             }}
                         >
                             {service.title}
