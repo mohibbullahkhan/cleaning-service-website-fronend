@@ -57,6 +57,13 @@ const testimonialsRow2 = [
   }
 ];
 
+type TestimonialItem = {
+  name: string;
+  role: string;
+  text: string;
+  img: string;
+};
+
 export default function TestimonialSection() {
   return (
     <section className="py-24 md:py-32 bg-[#F9F9F9] overflow-hidden">
@@ -67,7 +74,7 @@ export default function TestimonialSection() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
               <span className="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Testimonials</span>
             </div>
-            <h2 className="text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px]" style={{ fontFamily: 'var(--font-space-mono), monospace' }}>
+            <h2 className="text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px]">
               Trusted by those <br /> who value detail.
             </h2>
           </div>
@@ -114,13 +121,13 @@ export default function TestimonialSection() {
   );
 }
 
-function TestimonialCard({ item }: { item: any }) {
+function TestimonialCard({ item }: { item: TestimonialItem }) {
   return (
     <div className="w-[450px] h-[280px] shrink-0 bg-white p-10 rounded-[40px] border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.02)] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_40px_80px_rgba(0,0,0,0.05)] hover:-translate-y-1">
       <div>
         <div className="flex text-[#F59E0B] text-xs mb-6">★★★★★</div>
         <p className="text-[17px] text-[#111] font-normal leading-relaxed whitespace-normal line-clamp-3">
-          "{item.text}"
+          &ldquo;{item.text}&rdquo;
         </p>
       </div>
       <div className="flex items-center gap-4 mt-8">

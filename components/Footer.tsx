@@ -20,7 +20,7 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-[#E8521A] rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform">
                   ✨
                 </div>
-                <span className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
+                <span className="text-2xl font-bold tracking-tight">
                   OmahResik
                 </span>
               </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-2 space-y-8">
-            <h3 className="text-lg font-bold" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Explore</h3>
+            <h3 className="text-lg font-bold">Explore</h3>
             <ul className="space-y-4">
               {[
                 { label: 'Home', href: '/' },
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Services */}
           <div className="lg:col-span-2 space-y-8">
-            <h3 className="text-lg font-bold" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Specialties</h3>
+            <h3 className="text-lg font-bold">Specialties</h3>
             <ul className="space-y-4">
               {[
                 'Residential', 'Commercial', 'Deep Clean', 'Post-Construction', 'Move-In/Out'
@@ -87,7 +87,7 @@ export default function Footer() {
 
           {/* Contact Details */}
           <div className="lg:col-span-3 space-y-8">
-            <h3 className="text-lg font-bold" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Say Hello</h3>
+            <h3 className="text-lg font-bold">Say Hello</h3>
             <ul className="space-y-6">
               <li className="flex gap-4 group cursor-pointer">
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#E8521A] transition-colors">📍</div>

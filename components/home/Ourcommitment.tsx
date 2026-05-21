@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Button from "../ui/Button";
+import BookButton from "../booking/BookButton";
 
 export default function OurCommitment() {
     return (
@@ -158,9 +158,9 @@ export default function OurCommitment() {
                             }}
                             className="pt-20 flex justify-end"
                         >
-                            <Button href="/contact" showArrow>
+                            <BookButton showArrow>
                                 Book
-                            </Button>
+                            </BookButton>
                         </motion.div>
                     </div>
 

@@ -21,7 +21,7 @@ export default function AboutPage() {
                   <span className="w-2 h-2 rounded-full bg-[#E8521A] shrink-0" />
                   <span className="text-[10px] font-black text-[#111] uppercase tracking-[0.3em]">OUR MISSION</span>
                </div>
-               <h2 className="text-5xl md:text-8xl font-black text-[#111] leading-[0.95] tracking-tighter" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
+               <h2 className="text-5xl md:text-8xl font-black text-[#111] leading-[0.95] tracking-tighter">
                  We don&apos;t just clean. <br /> <span className="text-[#E8521A]">We transform.</span>
                </h2>
             </div>
@@ -37,11 +37,11 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-2 gap-12 pt-12 border-t border-gray-100">
                <div>
-                  <p className="text-6xl font-black text-[#111] mb-2" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>10+</p>
+                  <p className="text-6xl font-black text-[#111] mb-2">10+</p>
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Years of Perfection</p>
                </div>
                <div>
-                  <p className="text-6xl font-black text-[#111] mb-2" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>50+</p>
+                  <p className="text-6xl font-black text-[#111] mb-2">50+</p>
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Elite Specialists</p>
                </div>
             </div>
@@ -64,7 +64,7 @@ export default function AboutPage() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E8521A]/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2" />
         
         <div className="max-w-7xl mx-auto text-center mb-24">
-           <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tight" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
+           <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tight">
              Values that <span className="text-[#E8521A]">guide us</span>
            </h2>
            <p className="text-gray-400 font-medium text-xl max-w-2xl mx-auto">
@@ -81,7 +81,7 @@ export default function AboutPage() {
           ].map((val, i) => (
             <div key={i} className="bg-white/5 backdrop-blur-md p-12 rounded-[60px] border border-white/10 hover:bg-white/10 transition-all duration-500 group">
               <div className="text-5xl mb-10 transition-transform group-hover:scale-125 duration-500">{val.icon}</div>
-              <h3 className="text-2xl font-black mb-6 leading-tight" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>{val.title}</h3>
+              <h3 className="text-2xl font-black mb-6 leading-tight">{val.title}</h3>
               <p className="text-gray-400 leading-relaxed font-medium text-lg">{val.desc}</p>
             </div>
           ))}
@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
             <div className="max-w-2xl space-y-6">
-               <h2 className="text-4xl md:text-7xl font-black text-[#111] leading-tight tracking-tight" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
+               <h2 className="text-4xl md:text-7xl font-black text-[#111] leading-tight tracking-tight">
                  Meet our <br /> <span className="text-[#E8521A]">leadership</span>
                </h2>
                <p className="text-gray-500 font-medium text-xl">
@@ -120,7 +120,7 @@ export default function AboutPage() {
                    />
                    <div className="absolute inset-0 bg-gradient-to-t from-[#111]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h3 className="text-2xl font-black text-[#111] mb-2" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>{member.name}</h3>
+                <h3 className="text-2xl font-black text-[#111] mb-2">{member.name}</h3>
                 <p className="text-[10px] font-black text-gray-300 uppercase tracking-[0.3em]">{member.role}</p>
               </div>
             ))}
@@ -131,7 +131,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="py-24 px-6 bg-[#EFEFED] text-center">
          <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-5xl font-black text-[#111]" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Want to be part of the excellence?</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-[#111]">Want to be part of the excellence?</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
                <Button href="/contact" size="lg" className="px-12 rounded-full">Apply Now</Button>
                <Button href="/contact" variant="outline" size="lg" className="px-12 rounded-full">Contact HR</Button>

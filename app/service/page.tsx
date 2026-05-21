@@ -1,132 +1,179 @@
-import React from "react";
+"use client";
+
+import { motion } from "framer-motion";
 import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
+import BookButton from "@/components/booking/BookButton";
 import Image from "next/image";
 
 const services = [
   {
     title: "Residential Cleaning",
-    subtitle: "PERFECT FOR HOMES",
-    desc: "A meticulous cleaning of every room, ensuring your living space is a sanctuary of freshness.",
-    image: "https://images.unsplash.com/photo-1527515637462-cff94edd5be1?w=800&q=80",
-    features: ["Kitchen Sanitization", "Dusting & Vacuuming", "Floor Mopping", "Bathroom Scrubbing"],
-    price: "$120"
+    subtitle: "Perfect for homes",
+    desc: "A meticulous cleaning of every room, ensuring your living space stays calm, fresh, and welcoming.",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr9KCLp0o65V0Bx3FrAnQayh1eff2w90ulg&s",
+    features: ["Kitchen sanitization", "Dusting & vacuuming", "Floor mopping", "Bathroom scrubbing"],
+    price: "$120",
+    bookingService: "residential" as const,
   },
   {
     title: "Deep Cleaning",
-    subtitle: "INTENSIVE CARE",
-    desc: "Going beyond the surface to eliminate hidden allergens, deep-seated grime, and tough stains.",
+    subtitle: "Intensive care",
+    desc: "Going beyond the surface to remove built-up dust, hidden residue, and stubborn grime.",
     image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
-    features: ["Wall & Baseboard Wash", "Inside Appliances", "Upholstery Cleaning", "Sanitized Vents"],
-    price: "$250"
+    features: ["Baseboard wash", "Inside appliances", "Upholstery care", "Sanitized vents"],
+    price: "$320",
+    bookingService: "deepCleaning" as const,
   },
   {
     title: "Office Cleaning",
-    subtitle: "BUSINESS FRESHNESS",
-    desc: "Maintaining a professional and hygienic environment that boosts productivity and morale.",
+    subtitle: "Business freshness",
+    desc: "A dependable routine for teams who want a sharper, cleaner, and more focused workspace.",
     image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
-    features: ["Desk & Surface Wiping", "Trash Management", "Common Area Care", "Floor Polishing"],
-    price: "$180"
+    features: ["Desk wiping", "Trash management", "Common area care", "Floor polishing"],
+    price: "$250",
+    bookingService: "commercial" as const,
   },
   {
     title: "Move-In/Out",
-    subtitle: "NEW BEGINNINGS",
-    desc: "Ensuring a spotless transition whether you are moving into a new home or leaving one.",
+    subtitle: "New beginnings",
+    desc: "A full reset service that makes transitions easier, cleaner, and much less stressful.",
     image: "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800&q=80",
-    features: ["Full Interior Wash", "Inside Cabinets", "Appliance Deep Clean", "Window Polishing"],
-    price: "$300"
-  }
+    features: ["Full interior wash", "Cabinet interiors", "Appliance deep clean", "Window polishing"],
+    price: "$400",
+    bookingService: "moveInOut" as const,
+  },
 ];
 
 export default function ServicePage() {
   return (
-    <main className="bg-white">
-      <PageHero 
+    <main className="bg-[#FAFAF8]">
+      <PageHero
         title="Premium Services"
-        subtitle="Exceptional cleaning solutions tailored to your unique lifestyle and professional needs."
+        subtitle="A curated set of cleaning solutions designed for modern homes and workspaces."
         image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1600&q=80"
       />
 
-      {/* Services Grid */}
-      <section className="py-24 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto grid gap-24">
-          {services.map((service, idx) => (
-            <div 
-              key={idx} 
-              className={`flex flex-col lg:flex-row gap-16 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
+          {services.map((service, index) => (
+            <motion.article
+              key={service.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className={`grid gap-6 lg:gap-10 items-center rounded-[32px] md:rounded-[40px] border border-black/5 bg-white p-4 md:p-6 shadow-[0_24px_80px_-30px_rgba(0,0,0,0.14)] ${index % 2 === 1 ? "lg:grid-cols-[1fr_0.95fr]" : "lg:grid-cols-[0.95fr_1fr]"}`}
             >
-              {/* Image Side */}
-              <div className="w-full lg:w-1/2 relative h-[500px] md:h-[600px] rounded-[60px] overflow-hidden shadow-3xl group">
-                <Image 
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500" />
+              <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <div className="relative overflow-hidden rounded-[28px] md:rounded-[34px] aspect-[4/3] bg-[#EFEFED]">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  <div className="absolute left-5 top-5 rounded-full bg-white/90 backdrop-blur px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#111]">
+                    {service.subtitle}
+                  </div>
+                  <div className="absolute bottom-5 left-5 rounded-full bg-black/85 px-4 py-2 text-white text-sm font-semibold">
+                    Starting from {service.price}
+                  </div>
+                </div>
               </div>
 
-              {/* Text Side */}
-              <div className="w-full lg:w-1/2 space-y-8">
-                <div className="space-y-4">
-                  <p className="text-[12px] font-bold tracking-[0.3em] text-[#E8521A] uppercase">
-                    {service.subtitle}
-                  </p>
-                  <h2 
-                    className="text-4xl md:text-6xl font-black text-[#111] leading-tight"
-                    style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}
-                  >
-                    {service.title}
-                  </h2>
-                </div>
-                
-                <p className="text-xl text-gray-500 font-medium leading-relaxed max-w-lg">
+              <div className={`${index % 2 === 1 ? "lg:order-1" : ""} p-2 md:p-4 lg:p-6`}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8A8A8A]">
+                  {service.subtitle}
+                </p>
+                <h2 className="mt-4 text-[clamp(1.7rem,3vw,2.4rem)] font-semibold text-[#111] tracking-[-0.04em] leading-[1.08]">
+                  {service.title}
+                </h2>
+                <p className="mt-5 max-w-2xl text-base md:text-lg leading-7 text-[#666]">
                   {service.desc}
                 </p>
 
-                <div className="grid grid-cols-2 gap-6">
-                  {service.features.map((feature, fidx) => (
-                    <div key={fidx} className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-[#EEF5E0] flex items-center justify-center text-[#E8521A] text-xs">✓</div>
-                      <span className="text-sm font-bold text-[#333]">{feature}</span>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                  {service.features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3 rounded-[18px] border border-black/5 bg-[#FCFCFA] px-4 py-3">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-white text-xs">✓</span>
+                      <span className="text-sm font-medium text-[#222]">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-8 flex items-center gap-10 border-t border-gray-100">
+                <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 border-t border-black/5 pt-6">
                   <div>
-                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Starting from</p>
-                    <p className="text-4xl font-black text-[#111]">{service.price}</p>
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#8A8A8A]">Starting from</p>
+                    <p className="text-4xl font-semibold text-[#111] mt-2">{service.price}</p>
                   </div>
-                  <Button href="/contact" variant="primary" size="lg" showArrow className="px-10 py-5">
-                    Book Service
-                  </Button>
+                  <div className="flex flex-wrap gap-3">
+                    <BookButton service={service.bookingService} showArrow>
+                      Book Service
+                    </BookButton>
+                    <Button href="/pricing" variant="outline" className="!border-black/10 !text-[#111]">
+                      View Pricing
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.article>
           ))}
         </div>
       </section>
 
-      {/* Satisfaction Guarantee Bar */}
-      <section className="bg-white py-24 px-6 border-y border-gray-100">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 text-center md:text-left">
-           <div className="space-y-4">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#111]" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>The OmahResik Guarantee</h3>
-              <p className="text-gray-500 font-medium text-lg">If you're not 100% satisfied, we'll re-clean for free.</p>
-           </div>
-           <div className="w-24 h-24 bg-[#F8F9FA] rounded-[32px] flex items-center justify-center text-4xl border border-gray-100 shadow-sm">🛡️</div>
-        </div>
-      </section>
+      <section className="px-6 md:px-12 lg:px-24 pb-24">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative overflow-hidden rounded-[36px] border border-black/5 bg-[linear-gradient(135deg,#111111_0%,#171717_45%,#221c19_100%)] p-8 md:p-10 lg:p-14 text-white shadow-[0_35px_110px_-44px_rgba(0,0,0,0.52)]"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(232,82,26,0.14),transparent_28%)]" />
+            <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_0.9fr] lg:items-center">
+              <div className="max-w-2xl">
+                <p className="font-subtitle text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">
+                  The OmahResik Guarantee
+                </p>
+                <h3 className="mt-4 text-[clamp(1.8rem,3vw,2.9rem)] font-semibold tracking-[-0.04em] leading-[1.1] text-white">
+                  Clean, careful, and backed by a team you can trust.
+                </h3>
+                <p className="font-subtitle mt-5 max-w-2xl text-[15px] md:text-[16px] leading-7 text-white/72">
+                  If the result needs a touch-up, we make it right. Your satisfaction comes first.
+                </p>
 
-      {/* Final CTA */}
-      <section className="py-24 px-6 text-center bg-[#EFEFED]">
-        <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
-          Ready to experience the gold standard?
-        </h2>
-        <Button href="/contact" size="lg" showArrow className="px-12 shadow-2xl">
-          Get a Free Estimate
-        </Button>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <BookButton variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                    Book a Visit
+                  </BookButton>
+                  <Button href="/pricing" variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                    View Pricing
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid gap-3">
+                {[
+                  "Flexible scheduling",
+                  "Fully insured professionals",
+                  "No surprise billing",
+                ].map((item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-4 rounded-[22px] border border-white/10 bg-white/6 px-5 py-4 shadow-[0_12px_35px_-24px_rgba(0,0,0,0.35)]"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white/90">
+                      0{index + 1}
+                    </div>
+                    <p className="text-sm font-medium text-white/90">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
     </main>
   );

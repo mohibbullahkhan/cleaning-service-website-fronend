@@ -4,14 +4,18 @@
 @theme {
   --color-background: var(--color-bg);
   --color-foreground: var(--color-primary);
-  --font-display: var(--font-display);
+  --font-display: var(--font-heading);
   --font-body: var(--font-body);
+  --font-sans: var(--font-sans-base);
+  --font-subtitle: var(--font-subtitle-base);
 }
 
 :root {
-  /* Premium Typography System (Cabinet Grotesk & General Sans) */
-  --font-display: 'Cabinet Grotesk', 'Satoshi', 'Inter', sans-serif;
-  --font-body:    'General Sans', 'Satoshi', 'Inter', sans-serif;
+  /* Premium Typography System */
+  --font-sans-base: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-subtitle-base: var(--font-urbanist), 'Urbanist', sans-serif;
+  --font-heading: var(--font-sans-base);
+  --font-body: var(--font-sans-base);
 
   /* Luxury Colors */
   --color-bg: #FFFFFF;
@@ -40,11 +44,25 @@ body {
 
 /* Typography Refinement */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-heading) !important;
   font-weight: 500;
   line-height: 1.05;
   color: var(--color-primary);
   letter-spacing: -0.04em;
+}
+
+button,
+input,
+select,
+textarea,
+label,
+a {
+  font-family: var(--font-sans-base);
+}
+
+.font-subtitle {
+  font-family: var(--font-subtitle-base);
+  letter-spacing: 0.01em;
 }
 
 h1 { font-size: clamp(64px, 12vw, 120px); font-weight: 400; }

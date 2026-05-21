@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Button from './ui/Button'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import BookButton from './booking/BookButton'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -16,20 +16,19 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname()
+  return <NavbarShell key={pathname} pathname={pathname} />
+}
+
+function NavbarShell({ pathname }: { pathname: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  // Close menu on route change
-  useEffect(() => { setMenuOpen(false) }, [pathname])
-
-  // Add shadow on scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -43,7 +42,6 @@ export default function Navbar() {
           transition-shadow duration-300
           ${scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.08)]' : ''}
         `}
-        style={{ fontFamily: 'var(--font-dm-sans), DM Sans, sans-serif' }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-10 lg:px-12 h-[68px]">
 
@@ -54,10 +52,7 @@ export default function Navbar() {
                 <path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 9.2c-2.7 0-5-1.4-5-2.7 0-1.4 2.3-2.7 5-2.7s5 1.3 5 2.7c0 1.3-2.3 2.7-5 2.7z" />
               </svg>
             </div>
-            <span
-              className="text-[#111111] font-bold text-[17px]"
-              style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}
-            >
+            <span className="text-[#111111] font-bold text-[17px]">
               OmahResik
             </span>
           </Link>
@@ -93,13 +88,9 @@ export default function Navbar() {
           <div className="flex items-center gap-3 z-10 animate-fade-in" style={{ animationDelay: '800ms' }}>
 
             {/* Book button — always visible */}
-            <Button
-              href="/contact"
-              size="sm"
-              showArrow
-            >
+            <BookButton size="sm" showArrow>
               Book
-            </Button>
+            </BookButton>
 
             {/* Hamburger — mobile & tablet only */}
             <button
@@ -169,14 +160,14 @@ export default function Navbar() {
 
             {/* Full-width CTA at bottom of mobile menu */}
             <li className="mt-3 pt-4 border-t border-black/[0.07]">
-                <Button
-                  href="/contact"
-                  onClick={() => setMenuOpen(false)}
-                  showArrow
+                <BookButton
                   className="w-full"
+                  size="md"
+                  showArrow
+                  onClick={() => setMenuOpen(false)}
                 >
                   Book a Cleaner
-                </Button>
+                </BookButton>
             </li>
           </ul>
         </div>

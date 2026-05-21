@@ -44,7 +44,6 @@ export default function Home() {
         <div className="max-w-4xl mx-auto relative z-10">
           <h2
             className="text-5xl md:text-8xl font-bold text-[#111] leading-tight mb-10 tracking-tighter"
-            style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}
           >
             Ready for a <span className="text-[#E8521A]">fresher</span> perspective?
           </h2>

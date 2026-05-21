@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Button from "../ui/Button";
+import BookButton from "../booking/BookButton";
 
 const bgImages = [
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1600&q=80",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr9KCLp0o65V0Bx3FrAnQayh1eff2w90ulg&s",
     "https://images.unsplash.com/photo-1527515637462-cff94edd5be1?w=1600&q=80",
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"
 ];
@@ -47,13 +47,13 @@ export default function OurService() {
                         </div>
                     </div>
                     <div className="space-y-8">
-                        <h2 className={`text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px] ${fade("delay-100")}`} style={{ fontFamily: 'var(--font-space-mono), monospace' }}>
+                        <h2 className={`text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px] ${fade("delay-100")}`}>
                             Discover our home-cleaning services tailored to your space and schedule.
                         </h2>
                         <div className={`${fade("delay-200")}`}>
-                            <Button href="/contact" showArrow>
+                            <BookButton showArrow>
                                 Book
-                            </Button>
+                            </BookButton>
                         </div>
                     </div>
                 </div>

@@ -43,9 +43,6 @@ export default function AboutUs() {
                     <div className="flex-1 lg:max-w-[800px]">
                         <h2
                             className={`text-[#111] font-medium leading-[0.95] tracking-[-0.05em] text-4xl md:text-7xl lg:text-[100px] ${fade("delay-100")}`}
-                            style={{
-                                fontFamily: "var(--font-space-mono), monospace",
-                            }}
                         >
                             At OmahResik, we believe a clean home is happy. Our mission is to <span className="bg-[#CBDDFF] px-2 rounded-md">provide top notch</span> cleaning service
                         </h2>

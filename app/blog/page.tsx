@@ -1,182 +1,196 @@
 "use client";
 
-import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
-import Link from "next/link";
-import Image from "next/image";
+import { blogPosts } from "@/components/blog/blog-data";
 
-const blogPosts = [
-  {
-    title: "10 Tips for Maintaining a Fresh Home Every Day",
-    category: "Home Care",
-    date: "May 12, 2026",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
-    excerpt: "Discover the simple daily habits that keep your home smelling great and looking spotless between deep cleans."
-  },
-  {
-    title: "Why Eco-Friendly Cleaning is Better for Your Family",
-    category: "Health",
-    date: "May 08, 2026",
-    image: "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=800&q=80",
-    excerpt: "Explore the benefits of using non-toxic cleaning products and how they impact your indoor air quality."
-  },
-  {
-    title: "The Ultimate Guide to Office Productivity & Cleanliness",
-    category: "Workspace",
-    date: "May 02, 2026",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    excerpt: "A clean desk is a productive desk. Learn how to organize your workspace for maximum efficiency."
-  },
-  {
-    title: "Spring Cleaning Checklist: The Complete Guide",
-    category: "Cleaning Tips",
-    date: "April 25, 2026",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
-    excerpt: "Everything you need to know about deep cleaning your home from top to bottom this spring season."
-  },
-  {
-    title: "How to Remove Tough Stains from Your Upholstery",
-    category: "DIY",
-    date: "April 18, 2026",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    excerpt: "Don't panic! Here's a step-by-step guide to removing common spills and stains from your favorite sofa."
-  },
-  {
-    title: "The Benefits of Hiring Professional Cleaners",
-    category: "Lifestyle",
-    date: "April 10, 2026",
-    image: "https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?w=800&q=80",
-    excerpt: "Reclaim your time and energy by trusting experts to handle your home maintenance needs."
-  }
-];
+const POSTS_PER_PAGE = 3;
 
 export default function BlogPage() {
+  const searchParams = useSearchParams();
+  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  const page = Math.min(Math.max(1, Number(searchParams.get("page") ?? "1")), totalPages);
+  const [subscribed, setSubscribed] = useState(false);
+
+  const visiblePosts = useMemo(() => {
+    const start = (page - 1) * POSTS_PER_PAGE;
+    return blogPosts.slice(start, start + POSTS_PER_PAGE);
+  }, [page]);
+
+  const featuredPost = blogPosts[0];
+
   return (
-    <main className="bg-white">
-      <PageHero 
+    <main className="bg-[#FAFAF8]">
+      <PageHero
         title="Journal & Tips"
-        subtitle="Insights, expert advice, and professional secrets to help you live a cleaner, more organized life."
+        subtitle="Practical cleaning insights, product guidance, and expert stories for a more polished home."
         image="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1600&q=80"
       />
 
-      {/* Featured Post */}
-      <section className="py-24 px-6 md:px-12 lg:px-24">
+      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
-          {/* Categories Bar */}
-          <div className="flex flex-wrap gap-4 mb-16 justify-center">
-             {['All Posts', 'Cleaning Hacks', 'Sustainability', 'Healthy Living', 'Office Care'].map((cat, i) => (
-               <Button 
-                 key={i} 
-                 variant={i === 0 ? "black" : "outline"} 
-                 size="sm"
-                 className={i === 0 ? "shadow-xl" : "border-gray-100 !text-gray-500 hover:!border-[#111] hover:!text-[#111]"}
-               >
-                 {cat}
-               </Button>
-             ))}
-          </div>
-
-          <div className="relative h-[500px] md:h-[700px] rounded-[60px] overflow-hidden group cursor-pointer shadow-3xl mb-24">
-            <Image 
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80"
-              alt="Featured Post"
-              fill
-              className="object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
-            <div className="absolute bottom-16 left-16 right-16 text-white">
-              <span className="bg-[#E8521A] text-[10px] font-black tracking-[0.4em] uppercase px-6 py-3 rounded-full mb-8 inline-block shadow-2xl">
-                Editor&apos;s Pick
-              </span>
-              <h2 className="text-5xl md:text-8xl font-black mb-8 max-w-4xl tracking-tighter leading-[0.95]" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
-                How OmahResik is <br /> <span className="text-[#E8521A]">Revolutionizing</span> <br /> the Industry
-              </h2>
-              <div className="flex items-center gap-6 pt-8 border-t border-white/10">
-                <div className="w-14 h-14 rounded-full overflow-hidden relative border-2 border-white shadow-xl">
-                  <Image src="https://i.pravatar.cc/100?img=12" alt="Author" fill className="object-cover" />
-                </div>
-                <div>
-                   <p className="font-black uppercase tracking-widest text-[10px]">Written By</p>
-                   <p className="text-xl font-bold">Ronald Chen • 12 min read</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Blog Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-            {blogPosts.map((post, idx) => (
-              <article key={idx} className="group cursor-pointer">
-                <div className="relative h-[450px] rounded-[48px] overflow-hidden mb-10 shadow-2xl">
-                  <Image 
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                  <div className="absolute top-8 left-8">
-                    <span className="bg-white/95 backdrop-blur-md text-[#111] text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-xl">
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em]">{post.date}</p>
-                  <h3 className="text-3xl font-black text-[#111] leading-tight group-hover:text-[#E8521A] transition-colors" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
-                    {post.title}
-                  </h3>
-                  <p className="text-lg text-gray-500 font-medium leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <div className="pt-4">
-                    <Button href={`/blog/${idx}`} variant="outline" size="sm" showArrow className="!border-none !px-0 hover:!translate-x-2">
-                      Read Full Article
-                    </Button>
-                  </div>
-                </div>
-              </article>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            {["All Posts", "Cleaning Hacks", "Sustainability", "Healthy Living", "Office Care"].map((chip, index) => (
+              <button
+                key={chip}
+                type="button"
+                className={`rounded-full px-5 py-3 text-sm font-semibold transition-all ${
+                  index === 0 ? "bg-[#111] text-white shadow-lg" : "bg-white text-[#555] border border-black/5 hover:border-black/15"
+                }`}
+              >
+                {chip}
+              </button>
             ))}
           </div>
 
-          {/* Pagination */}
-          <div className="mt-32 flex justify-center items-center gap-4">
-            <Button variant="black" className="w-16 h-16 !p-0">1</Button>
-            <Button variant="outline" className="w-16 h-16 !p-0 !border-gray-100 !text-gray-400 hover:!border-[#111] hover:!text-[#111]">2</Button>
-            <Button variant="outline" className="w-16 h-16 !p-0 !border-gray-100 !text-gray-400 hover:!border-[#111] hover:!text-[#111]">3</Button>
-            <div className="w-8" />
-            <Button variant="outline" showArrow className="px-10 h-16 border-2 !border-[#111]">Next Page</Button>
+          <motion.article
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative overflow-hidden rounded-[36px] md:rounded-[48px] border border-black/5 bg-white shadow-[0_30px_110px_-45px_rgba(0,0,0,0.2)]"
+          >
+            <div className="relative aspect-[16/9] min-h-[320px]">
+              <Image
+                src={featuredPost.image}
+                alt={featuredPost.title}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-14 text-white">
+                <div className="inline-flex rounded-full bg-white/10 backdrop-blur px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em]">
+                  Editor&apos;s Pick
+                </div>
+                <h2 className="mt-5 max-w-4xl text-[clamp(1.9rem,4vw,3.4rem)] font-semibold tracking-[-0.045em] leading-[1.05]">
+                  {featuredPost.title}
+                </h2>
+                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
+                  <span>{featuredPost.date}</span>
+                  <span>•</span>
+                  <span>{featuredPost.readTime}</span>
+                  <span>•</span>
+                  <span>{featuredPost.author}</span>
+                </div>
+                <p className="mt-5 max-w-2xl text-base md:text-lg text-white/75">
+                  {featuredPost.excerpt}
+                </p>
+                <div className="mt-8">
+                  <Button href={`/blog/${featuredPost.slug}`} variant="outline" size="lg" className="!border-white/15 !text-white hover:!bg-white hover:!text-[#111]">
+                    Read Feature
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.article>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {visiblePosts.map((post, index) => (
+              <motion.article
+                key={post.slug}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="group overflow-hidden rounded-[30px] border border-black/5 bg-white shadow-[0_24px_70px_-36px_rgba(0,0,0,0.18)]"
+              >
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#111] shadow-lg">
+                      {post.category}
+                    </div>
+                  </div>
+                </Link>
+                <div className="p-6 md:p-7">
+                  <div className="flex items-center justify-between gap-4 text-xs uppercase tracking-[0.25em] text-[#9A9A9A]">
+                    <span>{post.date}</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                  <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#111] group-hover:text-[#E8521A] transition-colors">
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-[#666] line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-6">
+                    <Button href={`/blog/${post.slug}`} variant="outline" size="sm" showArrow className="!border-black/10 !text-[#111]">
+                      Read Article
+                    </Button>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-3">
+            {Array.from({ length: totalPages }).map((_, index) => {
+              const currentPage = index + 1;
+
+              return (
+                <Button
+                  key={currentPage}
+                  href={`/blog?page=${currentPage}`}
+                  variant={page === currentPage ? "black" : "outline"}
+                  className={page === currentPage ? "shadow-lg" : "!border-black/10 !text-[#666]"}
+                >
+                  {currentPage}
+                </Button>
+              );
+            })}
+            <Button
+              href={`/blog?page=${Math.min(page + 1, totalPages)}`}
+              variant="outline"
+              showArrow
+              className="!border-black/10 !text-[#111]"
+            >
+              Next Page
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="bg-[#111] py-32 px-6">
-        <div className="max-w-6xl mx-auto bg-[#E8521A] rounded-[60px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-[0_60px_120px_-20px_rgba(232,82,26,0.3)]">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px]" />
-          
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-7xl font-black mb-10 tracking-tight" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
-              Fresh hacks for <br /> your inbox.
+      <section className="px-6 md:px-12 lg:px-24 pb-24">
+        <div className="max-w-6xl mx-auto rounded-[36px] bg-[#111] p-8 md:p-12 lg:p-16 text-white shadow-[0_30px_100px_-45px_rgba(0,0,0,0.45)] relative overflow-hidden">
+          <div className="absolute top-0 right-0 h-[480px] w-[480px] translate-x-1/3 -translate-y-1/3 rounded-full bg-white/10 blur-[120px]" />
+          <div className="relative">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">Stay updated</p>
+            <h2 className="mt-4 max-w-3xl text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-[-0.045em] leading-[1.08]">
+              Fresh hacks for your inbox.
             </h2>
-            <p className="text-white/80 text-xl font-medium mb-16 max-w-2xl mx-auto">
-              Join 15,000+ readers who receive our curated selection of professional cleaning secrets every Monday.
+            <p className="mt-5 max-w-2xl text-base md:text-lg text-white/70">
+              Join readers who receive practical cleaning ideas every Monday.
             </p>
-            <form className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
-              <input 
-                type="email" 
-                placeholder="Your primary email" 
-                className="flex-1 bg-white border-none rounded-3xl px-8 py-6 text-[#111] placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all font-bold"
+            <form
+              className="mt-8 flex flex-col md:flex-row gap-4 max-w-2xl"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setSubscribed(true);
+              }}
+            >
+              <input
+                type="email"
+                placeholder="Your primary email"
+                className="h-14 flex-1 rounded-full border border-white/10 bg-white px-5 text-[#111] placeholder:text-[#9A9A9A] outline-none"
               />
-              <Button 
-                variant="black" 
-                showArrow
-                className="px-10 py-6"
-                onClick={() => {}}
-              >
+              <Button type="submit" variant="primary" size="lg" className="px-8">
                 Subscribe
               </Button>
             </form>
+            {subscribed && (
+              <p className="mt-4 text-sm text-white/70">
+                Thanks — we&apos;ll send the next issue your way.
+              </p>
+            )}
           </div>
         </div>
       </section>

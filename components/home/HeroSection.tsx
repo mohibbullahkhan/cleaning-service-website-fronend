@@ -28,10 +28,7 @@ export default function HeroSection() {
                 <div className="relative z-[5] text-center pt-[52px] px-6">
                     <h1
                         className="text-[#111111] leading-[1] tracking-[-0.05em] font-bold text-[clamp(68px,14vw,152px)] animate-slide-up"
-                        style={{
-                            fontFamily: "var(--font-roboto), Roboto, sans-serif",
-                            animationDelay: '300ms'
-                        }}
+                        style={{ animationDelay: '300ms' }}
                     >
                         OmahResik
                     </h1>
@@ -52,13 +49,13 @@ export default function HeroSection() {
                                         ⊙
                                     </span>
                                     <div>
-                                        <p className="text-[10px] font-semibold text-[#999]  ">
+                                        <p className="text-[10px] font-semibold text-[#999] leading-none whitespace-nowrap">
                                             Home owner
                                         </p>
 
                                     </div>
                                 </div>
-                                <div className="flex gap-2">
+                                <div className="flex items-center gap-2">
                                     <div className="w-[32px] h-[32px] flex rounded-full overflow-hidden bg-[#e8e8e8] relative">
                                         <Image
                                             src="https://i.pravatar.cc/30?img=3"
@@ -69,7 +66,7 @@ export default function HeroSection() {
                                         />
 
                                     </div>
-                                    <p className="text-[14px] font-semibold text-[#111]">
+                                    <p className="text-[14px] font-semibold text-[#111] leading-none whitespace-nowrap">
                                         Renald
                                     </p>
                                 </div>

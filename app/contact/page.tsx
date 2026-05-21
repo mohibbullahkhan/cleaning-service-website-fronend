@@ -1,210 +1,255 @@
 "use client";
 
-import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import PageHero from "@/components/ui/PageHero";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
+import BookButton from "@/components/booking/BookButton";
+
+type FormState = {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  date: string;
+  message: string;
+};
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<FormState>({
     name: "",
     email: "",
     phone: "",
-    service: "Home Cleaning",
+    service: "Residential Cleaning",
     date: "",
-    message: ""
+    message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState<number | null>(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const faqs = [
+    { q: "How quickly can I get a booking?", a: "We typically respond within 2 business hours and can often schedule same-week service." },
+    { q: "Do I need to be home for the cleaning?", a: "Not necessarily. Many clients provide secure access instructions and return to a freshly cleaned space." },
+    { q: "What is your cancellation policy?", a: "You can reschedule or cancel up to 24 hours before your appointment without any penalty." },
+  ];
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     setIsSubmitted(true);
   };
 
-  const faqs = [
-    { q: "How quickly can I get a booking?", a: "We typically respond to inquiries within 2 hours during business hours and can often schedule same-week service." },
-    { q: "Do I need to be home for the cleaning?", a: "It's entirely up to you! Most of our clients provide us with a key or entry code, but we're happy to clean while you're home too." },
-    { q: "What is your cancellation policy?", a: "We offer free cancellation up to 24 hours before your scheduled appointment." }
-  ];
-
   return (
-    <main className="bg-white">
+    <main className="bg-[#FAFAF8]">
       <PageHero
         title="Contact OmahResik"
-        subtitle="Experience the gold standard of professional cleaning. Send us a message and we'll handle the rest."
+        subtitle="Send us a quick message or open the booking flow. We'll guide you from there."
         image="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1600&q=80"
       />
 
-      <section className="py-24 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.8fr] gap-16 lg:gap-24">
+      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-24">
+        <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-[0.92fr_1.08fr] items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="rounded-[28px] border border-black/5 bg-white p-6 md:p-7 shadow-[0_24px_80px_-36px_rgba(0,0,0,0.16)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8A8A8A]">Let&apos;s talk</p>
+              <h2 className="mt-4 text-[clamp(1.8rem,3vw,2.7rem)] font-semibold tracking-[-0.04em] leading-[1.1] text-[#111]">
+                A clean home starts with a clear conversation.
+              </h2>
+              <p className="font-subtitle mt-5 max-w-xl text-[15px] md:text-[16px] leading-7 text-[#666]">
+                Whether you need a one-time visit or recurring support, we’ll help you choose the right service.
+              </p>
+            </div>
 
-            {/* Left Column: Premium Info & Trust */}
-            <div className="space-y-16">
-              <div className="animate-slide-up">
-                <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>
-                  Connect with us
-                </h2>
-                <p className="text-gray-500 font-medium text-lg leading-relaxed max-w-sm">
-                  Whether you have a question or are ready to schedule your first cleaning, our team is here for you.
-                </p>
-              </div>
+            <div className="grid gap-4">
+              {[
+                { label: "Priority hotline", value: "+62 812-3456-7890" },
+                { label: "Business email", value: "hello@omahresik.com" },
+                { label: "Studio location", value: "Ponorogo, East Java" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-[22px] border border-black/5 bg-white p-5 shadow-[0_16px_55px_-35px_rgba(0,0,0,0.14)]">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-[#8A8A8A]">{item.label}</p>
+                  <p className="mt-3 text-[15px] md:text-[16px] font-semibold text-[#111]">{item.value}</p>
+                </div>
+              ))}
+            </div>
 
-              <div className="grid gap-6">
-                {[
-                  { icon: "📍", label: "Studio Location", value: "Ponorogo, East Java" },
-                  { icon: "📞", label: "Priority Hotline", value: "+62 812-3456-7890" },
-                  { icon: "✉️", label: "Business Inquiry", value: "hello@omahresik.com" }
-                ].map((item, i) => (
-                  <div key={i} className="group p-8 rounded-[32px] bg-[#EFEFED] hover:bg-[#111] transition-all duration-500 cursor-pointer">
-                    <div className="flex items-center gap-6">
-                      <div className="text-3xl grayscale group-hover:grayscale-0 transition-all">{item.icon}</div>
-                      <div>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 group-hover:text-gray-500">{item.label}</p>
-                        <p className="text-xl font-bold text-[#111] group-hover:text-white transition-colors">{item.value}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Trust Badges */}
-              <div className="pt-12 border-t border-gray-100">
-                <p className="text-xs font-bold text-gray-300 uppercase tracking-[0.3em] mb-8">Our Quality Guarantee</p>
-                <div className="flex flex-wrap gap-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#EEF5E0] flex items-center justify-center text-[#E8521A]">✓</div>
-                    <span className="font-bold text-sm text-[#111]">Licensed & Insured</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#EEF5E0] flex items-center justify-center text-[#E8521A]">✓</div>
-                    <span className="font-bold text-sm text-[#111]">100% Satisfaction</span>
-                  </div>
+            <div className="rounded-[28px] border border-black/5 bg-[linear-gradient(135deg,#111_0%,#171717_60%,#221c19_100%)] p-6 md:p-7 text-white shadow-[0_24px_80px_-36px_rgba(0,0,0,0.32)] overflow-hidden relative">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(232,82,26,0.12),transparent_24%)]" />
+              <div className="relative">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">Need something faster?</p>
+                <h3 className="mt-4 text-[clamp(1.5rem,2.2vw,2rem)] font-semibold tracking-[-0.03em] leading-[1.15]">
+                  Open the booking flow and pick a service instantly.
+                </h3>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <BookButton variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                    Book Now
+                  </BookButton>
+                  <Button href="/pricing" variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                    View Pricing
+                  </Button>
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            {/* Right Column: High-End Interactive Form */}
-            <div className="relative animate-slide-up">
-              <div className="bg-white rounded-[56px] p-10 md:p-16 shadow-[0_60px_120px_-20px_rgba(0,0,0,0.12)] border border-gray-50 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#EEF5E0]/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="rounded-[30px] border border-black/5 bg-white p-5 md:p-6 lg:p-7 shadow-[0_30px_90px_-40px_rgba(0,0,0,0.16)]"
+          >
+            <div className="relative overflow-hidden rounded-[24px] bg-[#FAFAF8] p-5 md:p-6">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(232,82,26,0.08),transparent_34%)]" />
 
+              <AnimatePresence mode="wait">
                 {isSubmitted ? (
-                  <div className="text-center py-20 relative z-10">
-                    <div className="w-24 h-24 bg-[#111] text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-10 shadow-3xl">✓</div>
-                    <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Thank You!</h2>
-                    <p className="text-gray-500 font-medium text-lg max-w-xs mx-auto">We've received your message and will reach out shortly.</p>
-                    <Button
-                      onClick={() => setIsSubmitted(false)}
-                      variant="outline"
-                      size="md"
-                    >
-                      Send Another
-                    </Button>
-                  </div>
+                  <motion.div
+                    key="thanks"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    className="relative py-14 text-center"
+                  >
+                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#111] text-white text-xl shadow-[0_18px_40px_-20px_rgba(0,0,0,0.45)]">
+                      ✓
+                    </div>
+                    <h2 className="text-2xl md:text-[2rem] font-semibold tracking-[-0.03em] text-[#111]">Thank you</h2>
+                    <p className="font-subtitle mt-4 max-w-md mx-auto text-[15px] leading-7 text-[#666]">
+                      We&apos;ve received your message and will reach out shortly.
+                    </p>
+                    <div className="mt-8 flex justify-center">
+                      <Button variant="outline" onClick={() => setIsSubmitted(false)}>
+                        Send Another
+                      </Button>
+                    </div>
+                  </motion.div>
                 ) : (
-                  <form className="space-y-10 relative z-10" onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="group relative">
-                        <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-[#E8521A]">Full Name</label>
-                        <input
-                          type="text"
-                          required
-                          value={formState.name}
-                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                          className="w-full bg-white border-2 border-gray-100 focus:border-[#E8521A] rounded-[24px] px-8 py-5 text-[#111] font-semibold outline-none transition-all placeholder:text-gray-200"
-                          placeholder="John Doe"
-                        />
-                      </div>
-                      <div className="group relative">
-                        <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-[#E8521A]">Email Address</label>
-                        <input
-                          type="email"
-                          required
-                          value={formState.email}
-                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                          className="w-full bg-white border-2 border-gray-100 focus:border-[#E8521A] rounded-[24px] px-8 py-5 text-[#111] font-semibold outline-none transition-all placeholder:text-gray-200"
-                          placeholder="john@omahresik.com"
-                        />
-                      </div>
+                  <motion.form
+                    key="form"
+                    onSubmit={handleSubmit}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="relative space-y-4"
+                  >
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {[
+                        { label: "Full name", key: "name", type: "text", placeholder: "John Doe" },
+                        { label: "Email address", key: "email", type: "email", placeholder: "john@omahresik.com" },
+                        { label: "Phone", key: "phone", type: "tel", placeholder: "+62 812..." },
+                        { label: "Preferred date", key: "date", type: "date", placeholder: "" },
+                      ].map((field) => (
+                        <label key={field.key} className="grid gap-2">
+                          <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">{field.label}</span>
+                          <input
+                            type={field.type}
+                            required
+                            value={(formState as Record<string, string>)[field.key]}
+                            onChange={(event) => setFormState((current) => ({ ...current, [field.key]: event.target.value }))}
+                            placeholder={field.placeholder}
+                            className="h-13 rounded-[16px] border border-black/10 bg-white px-4 text-[#111] outline-none transition focus:border-black/30 focus:shadow-[0_0_0_4px_rgba(17,17,17,0.04)]"
+                          />
+                        </label>
+                      ))}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="group relative">
-                        <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-[#E8521A]">Phone</label>
-                        <input
-                          type="tel"
-                          required
-                          value={formState.phone}
-                          onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                          className="w-full bg-white border-2 border-gray-100 focus:border-[#E8521A] rounded-[24px] px-8 py-5 text-[#111] font-semibold outline-none transition-all placeholder:text-gray-200"
-                          placeholder="+62 812..."
-                        />
-                      </div>
-                      <div className="group relative">
-                        <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-[#E8521A]">Service</label>
-                        <select
-                          value={formState.service}
-                          onChange={(e) => setFormState({ ...formState, service: e.target.value })}
-                          className="w-full bg-white border-2 border-gray-100 focus:border-[#E8521A] rounded-[24px] px-8 py-5 text-[#111] font-semibold outline-none transition-all appearance-none cursor-pointer"
-                        >
-                          <option>Home Cleaning</option>
-                          <option>Deep Cleaning</option>
-                          <option>Office Cleaning</option>
-                          <option>Move-In/Out</option>
-                        </select>
-                      </div>
-                    </div>
+                    <label className="grid gap-2">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">Service</span>
+                      <select
+                        value={formState.service}
+                        onChange={(event) => setFormState((current) => ({ ...current, service: event.target.value }))}
+                        className="h-13 rounded-[16px] border border-black/10 bg-white px-4 text-[#111] outline-none transition focus:border-black/30 focus:shadow-[0_0_0_4px_rgba(17,17,17,0.04)]"
+                      >
+                        <option>Residential Cleaning</option>
+                        <option>Deep Cleaning</option>
+                        <option>Commercial Cleaning</option>
+                        <option>Move In / Move Out</option>
+                      </select>
+                    </label>
 
-                    <div className="group relative">
-                      <label className="absolute -top-3 left-6 bg-white px-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest z-10 transition-colors group-focus-within:text-[#E8521A]">Your Message</label>
+                    <label className="grid gap-2">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">Your message</span>
                       <textarea
-                        rows={4}
+                        rows={5}
+                        required
                         value={formState.message}
-                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        className="w-full bg-white border-2 border-gray-100 focus:border-[#E8521A] rounded-[28px] px-8 py-5 text-[#111] font-semibold outline-none transition-all resize-none placeholder:text-gray-200"
-                        placeholder="Tell us what you need..."
+                        onChange={(event) => setFormState((current) => ({ ...current, message: event.target.value }))}
+                        placeholder="Tell us about your space, timing, or special request."
+                        className="rounded-[18px] border border-black/10 bg-white px-4 py-4 text-[#111] outline-none transition focus:border-black/30 focus:shadow-[0_0_0_4px_rgba(17,17,17,0.04)] resize-none"
                       />
+                    </label>
+
+                    <div className="grid gap-3 rounded-[20px] border border-black/5 bg-[#FCFCFA] p-4 text-sm text-[#666]">
+                      <p>Flexible scheduling across the day</p>
+                      <p>Fast response from our support team</p>
+                      <p>No payment due today. Your card is only collected after the booking is confirmed by our team.</p>
                     </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full"
-                      variant="primary"
-                      showArrow
-                    >
-                      Request a Quote
-                    </Button>
-                  </form>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <Button type="submit" variant="primary" showArrow className="flex-1">
+                        Request a Quote
+                      </Button>
+                      <Button href="/booking" variant="outline" className="flex-1 !border-black/10 !text-[#111]">
+                        Open Booking
+                      </Button>
+                    </div>
+                  </motion.form>
                 )}
-              </div>
+              </AnimatePresence>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Quick Help Section */}
-      <section className="py-24 px-6 bg-[#EFEFED]">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-3xl font-bold mb-12 text-center" style={{ fontFamily: 'var(--font-roboto), Roboto, sans-serif' }}>Quick Help & FAQ</h3>
+      <section className="px-6 md:px-12 lg:px-24 pb-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-8 text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8A8A8A]">Quick help</p>
+            <h2 className="mt-4 text-[clamp(1.7rem,3vw,2.4rem)] font-semibold tracking-[-0.04em] text-[#111]">
+              Frequently asked questions
+            </h2>
+          </div>
           <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white rounded-[24px] overflow-hidden transition-all duration-300 shadow-sm">
-                <button
-                  onClick={() => setActiveAccordion(activeAccordion === idx ? null : idx)}
-                  className="w-full px-8 py-6 flex items-center justify-between text-left"
-                >
-                  <span className="font-bold text-[#111]">{faq.q}</span>
-                  <span className={`text-2xl transition-transform ${activeAccordion === idx ? 'rotate-45' : ''}`}>+</span>
-                </button>
-                {activeAccordion === idx && (
-                  <div className="px-8 pb-6 text-gray-500 font-medium leading-relaxed">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
+            {faqs.map((faq, index) => {
+              const active = activeAccordion === index;
+
+              return (
+                <div key={faq.q} className="rounded-[22px] border border-black/5 bg-white px-5 md:px-6 shadow-[0_16px_55px_-36px_rgba(0,0,0,0.18)]">
+                  <button
+                    type="button"
+                    onClick={() => setActiveAccordion(active ? null : index)}
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                  >
+                    <span className="text-base md:text-[17px] font-semibold text-[#111]">{faq.q}</span>
+                    <span
+                      className={`flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition-transform ${
+                        active ? "rotate-45 bg-[#111] text-white" : "bg-[#FAFAF8] text-[#111]"
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {active && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-5 text-[15px] leading-7 text-[#666]">{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
