@@ -49,7 +49,7 @@ export default function Button({
       {children}
       {showArrow && (
         <span className="ml-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-current/10 text-[11px] leading-none transition-colors group-hover:bg-current/15">
-          →
+          &rarr;
         </span>
       )}
     </>

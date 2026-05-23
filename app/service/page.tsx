@@ -129,26 +129,25 @@ export default function ServicePage() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="relative overflow-hidden rounded-[36px] border border-black/5 bg-[linear-gradient(135deg,#111111_0%,#171717_45%,#221c19_100%)] p-8 md:p-10 lg:p-14 text-white shadow-[0_35px_110px_-44px_rgba(0,0,0,0.52)]"
+            className="overflow-hidden rounded-[28px] border border-[#E4E5DC] bg-[#F7F8F3] p-7 text-[#111] shadow-[0_24px_80px_-46px_rgba(0,0,0,0.22)] md:p-9 lg:p-12"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(232,82,26,0.14),transparent_28%)]" />
-            <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_0.9fr] lg:items-center">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_0.9fr] lg:items-center">
               <div className="max-w-2xl">
-                <p className="font-subtitle text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">
+                <p className="font-subtitle text-[11px] font-semibold uppercase tracking-[0.28em] text-[#E8521A]">
                   The OmahResik Guarantee
                 </p>
-                <h3 className="mt-4 text-[clamp(1.8rem,3vw,2.9rem)] font-semibold tracking-[-0.04em] leading-[1.1] text-white">
+                <h3 className="mt-4 text-[clamp(1.55rem,2.6vw,2.35rem)] font-semibold tracking-[-0.02em] leading-[1.12] text-[#111]">
                   Clean, careful, and backed by a team you can trust.
                 </h3>
-                <p className="font-subtitle mt-5 max-w-2xl text-[15px] md:text-[16px] leading-7 text-white/72">
+                <p className="font-subtitle mt-5 max-w-2xl text-[15px] md:text-[16px] leading-7 text-[#56564F]">
                   If the result needs a touch-up, we make it right. Your satisfaction comes first.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <BookButton variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                  <BookButton variant="primary" className="shadow-[0_16px_34px_-22px_rgba(232,82,26,0.7)]">
                     Book a Visit
                   </BookButton>
-                  <Button href="/pricing" variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                  <Button href="/pricing" variant="outline" className="!border-[#E8521A]/30 !bg-white !text-[#E8521A] hover:!bg-[#E8521A] hover:!text-white">
                     View Pricing
                   </Button>
                 </div>
@@ -162,12 +161,12 @@ export default function ServicePage() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 rounded-[22px] border border-white/10 bg-white/6 px-5 py-4 shadow-[0_12px_35px_-24px_rgba(0,0,0,0.35)]"
+                    className="flex items-center gap-4 rounded-[18px] border border-[#E0E1D9] bg-white px-5 py-4 shadow-[0_14px_40px_-32px_rgba(0,0,0,0.22)]"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white/90">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFF1EA] text-sm font-semibold text-[#E8521A]">
                       0{index + 1}
                     </div>
-                    <p className="text-sm font-medium text-white/90">{item}</p>
+                    <p className="text-sm font-semibold text-[#222]">{item}</p>
                   </div>
                 ))}
               </div>

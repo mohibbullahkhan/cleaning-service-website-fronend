@@ -14,7 +14,7 @@ const pricingPlans = [
     label: "Best for regular upkeep",
     features: ["Kitchen surface cleaning", "Bathroom sanitizing", "Dusting common areas", "Floor mopping", "Trash removal"],
     bookingService: "residential" as const,
-    accent: "from-white via-[#FAFAF7] to-[#F3F1EC]",
+    accent: "from-white via-[#FAFAF7] to-[#F4F5EF]",
   },
   {
     name: "Standard",
@@ -23,7 +23,7 @@ const pricingPlans = [
     label: "Most popular for busy homes",
     features: ["All Essentials features", "Inside microwave cleaning", "Deep vacuuming", "Bed making", "Cabinet exterior wiping", "Window sills cleaning"],
     bookingService: "deepCleaning" as const,
-    accent: "from-[#111111] via-[#171717] to-[#232323]",
+    accent: "from-[#FFF7F2] via-white to-[#F8F4EC]",
     popular: true,
   },
   {
@@ -33,7 +33,7 @@ const pricingPlans = [
     label: "For larger or detailed spaces",
     features: ["All Standard features", "Inside oven cleaning", "Baseboard washing", "Interior window cleaning", "Upholstery vacuuming", "Wall spot cleaning"],
     bookingService: "commercial" as const,
-    accent: "from-white via-[#FCFCFA] to-[#F4F3EF]",
+    accent: "from-white via-[#FCFCFA] to-[#F1F4EA]",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function PricingPage() {
         image="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=1600&q=80"
       />
 
-      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-28 -mt-14">
+      <section className="px-6 md:px-12 lg:px-24 py-16 md:py-24 -mt-10">
         <div className="max-w-7xl mx-auto grid gap-5 lg:grid-cols-3">
           {pricingPlans.map((plan) => (
             <motion.div
@@ -73,22 +73,22 @@ export default function PricingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative flex h-full flex-col rounded-[28px] border p-5 md:p-6 lg:p-7 shadow-[0_28px_90px_-42px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 ${
-                plan.popular ? "border-white/10 bg-[#111] text-white" : "border-black/5 bg-white text-[#111]"
+              className={`relative flex h-full flex-col overflow-hidden rounded-[24px] border bg-white p-5 text-[#111] shadow-[0_24px_75px_-42px_rgba(0,0,0,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_90px_-44px_rgba(0,0,0,0.28)] md:p-6 lg:p-7 ${
+                plan.popular ? "border-[#E8521A]/35 ring-1 ring-[#E8521A]/15" : "border-[#E2E3DC]"
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#E8521A] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.28em] text-white shadow-lg">
+                <div className="mb-4 inline-flex w-fit rounded-full bg-[#E8521A] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_14px_30px_-18px_rgba(232,82,26,0.65)]">
                   Most popular
                 </div>
               )}
 
-              <div className={`rounded-[22px] bg-gradient-to-br ${plan.accent} p-4 md:p-5`}>
-                <p className="text-[10px] uppercase tracking-[0.34em] text-[#8A8A8A]">{plan.label}</p>
-                <h3 className="mt-3 text-[1.55rem] font-semibold tracking-[-0.04em]">{plan.name}</h3>
+              <div className={`rounded-[18px] border ${plan.popular ? "border-[#F2C6B2]" : "border-[#E8E9E1]"} bg-gradient-to-br ${plan.accent} p-4 md:p-5`}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7B7B73]">{plan.label}</p>
+                <h3 className="mt-3 text-[1.45rem] font-semibold tracking-[-0.02em] text-[#111]">{plan.name}</h3>
                 <div className="mt-5 flex items-end gap-2">
-                  <span className="text-4xl font-semibold tracking-[-0.04em]">${plan.price}</span>
-                  <span className={`pb-1 text-sm font-medium ${plan.popular ? "text-white/55" : "text-[#777]"}`}>{plan.period}</span>
+                  <span className="text-4xl font-semibold tracking-[-0.02em] text-[#111]">${plan.price}</span>
+                  <span className="pb-1 text-sm font-medium text-[#676760]">{plan.period}</span>
                 </div>
               </div>
 
@@ -97,23 +97,21 @@ export default function PricingPage() {
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] ${
-                          plan.popular ? "bg-white/10 text-white" : "bg-black text-white"
-                        }`}
+                        className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FFF1EA] text-[10px] font-semibold text-[#E8521A]"
                       >
                         ✓
                       </span>
-                      <span className={`text-sm leading-6 ${plan.popular ? "text-white/74" : "text-[#555]"}`}>{feature}</span>
+                      <span className="text-sm leading-6 text-[#4F4F49]">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-black/5">
+              <div className="mt-6 border-t border-[#ECEDE6] pt-5">
                 <BookButton
                   service={plan.bookingService}
-                  variant={plan.popular ? "outline" : "black"}
-                  className={`w-full ${plan.popular ? "!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]" : ""}`}
+                  variant={plan.popular ? "primary" : "outline"}
+                  className={`w-full ${plan.popular ? "shadow-[0_16px_34px_-22px_rgba(232,82,26,0.7)]" : "!border-[#E8521A]/25 !text-[#E8521A] hover:!bg-[#E8521A] hover:!text-white"}`}
                   showArrow
                 >
                   Book {plan.name}
@@ -124,16 +122,15 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="px-6 md:px-12 lg:px-24 pb-20 md:pb-28">
-        <div className="max-w-7xl mx-auto rounded-[34px] border border-black/5 bg-[linear-gradient(135deg,#111_0%,#171717_55%,#221c19_100%)] p-7 md:p-10 lg:p-12 text-white shadow-[0_35px_110px_-44px_rgba(0,0,0,0.5)] overflow-hidden relative">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.09),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(232,82,26,0.12),transparent_26%)]" />
-          <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_0.95fr] lg:items-center">
+      <section className="px-6 md:px-12 lg:px-24 pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto overflow-hidden rounded-[28px] border border-[#E2E3DC] bg-[#F7F8F3] p-7 text-[#111] shadow-[0_26px_85px_-50px_rgba(0,0,0,0.24)] md:p-9 lg:p-12">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_0.95fr] lg:items-center">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.35em] text-white/45">Need something custom?</p>
-              <h2 className="mt-4 text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-[-0.04em] leading-[1.1] text-white">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#E8521A]">Need something custom?</p>
+              <h2 className="mt-4 text-[clamp(1.55rem,2.6vw,2.35rem)] font-semibold tracking-[-0.02em] leading-[1.12] text-[#111]">
                 We can tailor a quote for larger or specialized spaces.
               </h2>
-              <p className="font-subtitle mt-5 max-w-2xl text-[15px] md:text-[16px] leading-7 text-white/72">
+              <p className="font-subtitle mt-5 max-w-2xl text-[15px] md:text-[16px] leading-7 text-[#56564F]">
                 Final price may adjust after walkthrough for unusual scope.
               </p>
             </div>
@@ -143,17 +140,17 @@ export default function PricingPage() {
                 ["Fast review", "Get a tailored reply from our team."],
                 ["Clear scope", "We help map unusual rooms or requests."],
               ].map(([title, text]) => (
-                <div key={title} className="rounded-[22px] border border-white/10 bg-white/6 p-5">
-                  <p className="text-sm font-semibold text-white">{title}</p>
-                  <p className="font-subtitle mt-2 text-sm leading-6 text-white/68">{text}</p>
+                <div key={title} className="rounded-[18px] border border-[#E0E1D9] bg-white p-5 shadow-[0_14px_40px_-32px_rgba(0,0,0,0.2)]">
+                  <p className="text-sm font-semibold text-[#111]">{title}</p>
+                  <p className="font-subtitle mt-2 text-sm leading-6 text-[#5C5C55]">{text}</p>
                 </div>
               ))}
 
               <div className="sm:col-span-2 mt-1 flex flex-col gap-3 sm:flex-row">
-                <Button href="/contact" variant="outline" size="lg" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                <Button href="/contact" variant="primary" size="lg" className="shadow-[0_16px_34px_-22px_rgba(232,82,26,0.7)]">
                   Request Custom Quote
                 </Button>
-                <div className="rounded-[18px] border border-white/10 bg-white/6 px-4 py-3 text-sm text-white/72">
+                <div className="rounded-[18px] border border-[#F0C3AE] bg-white px-4 py-3 text-sm leading-6 text-[#C74713]">
                   We’ll help shape the right scope before you book.
                 </div>
               </div>
@@ -166,14 +163,14 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 flex items-end justify-between gap-4 flex-wrap">
             <div className="max-w-2xl">
-              <p className="text-[11px] uppercase tracking-[0.35em] text-[#8A8A8A]">Premium enhancements</p>
-              <h2 className="mt-4 text-[clamp(1.7rem,3vw,2.6rem)] font-semibold tracking-[-0.04em] text-[#111]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#E8521A]">Premium enhancements</p>
+              <h2 className="mt-4 text-[clamp(1.55rem,2.6vw,2.35rem)] font-semibold tracking-[-0.02em] text-[#111]">
                 Add-ons designed like polished feature cards
               </h2>
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {addons.map((addon, index) => (
               <motion.div
                 key={addon.name}
@@ -181,25 +178,27 @@ export default function PricingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.4, delay: index * 0.04 }}
-                className="group rounded-[22px] border border-black/5 bg-[linear-gradient(180deg,#FFFFFF_0%,#FBFBFA_100%)] p-4 shadow-[0_16px_45px_-28px_rgba(0,0,0,0.16)] transition-all duration-300 hover:-translate-y-0.5 hover:border-black/10 hover:shadow-[0_24px_60px_-28px_rgba(0,0,0,0.2)]"
+                className="group relative overflow-hidden rounded-[20px] border border-[#E2E3DC] bg-white p-5 shadow-[0_20px_65px_-42px_rgba(0,0,0,0.22)] transition-all duration-300 hover:-translate-y-1 hover:border-[#E8521A]/25 hover:shadow-[0_28px_80px_-42px_rgba(0,0,0,0.28)]"
               >
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#E8521A] to-[#F3B391]" />
                 <div className="flex items-start gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[#111] text-white text-base shadow-[0_14px_28px_-18px_rgba(0,0,0,0.45)]">
-                    {addon.icon}
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border border-[#F0C3AE] bg-[#FFF1EA] text-sm font-semibold text-[#E8521A] shadow-[0_14px_28px_-22px_rgba(232,82,26,0.35)]">
+                    0{index + 1}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <h3 className="text-sm font-semibold leading-6 text-[#111] md:text-[15px]">{addon.name}</h3>
-                        <p className="mt-1 text-xs leading-5 text-[#777]">Optional premium add-on</p>
+                        <h3 className="text-[15px] font-semibold leading-6 text-[#111]">{addon.name}</h3>
+                        <p className="mt-1 text-xs leading-5 text-[#66665F]">Optional premium add-on</p>
                       </div>
-                      <div className="rounded-full bg-[#111] px-3 py-1.5 text-xs font-semibold text-white shadow-[0_10px_24px_-18px_rgba(0,0,0,0.5)]">
+                      <div className="rounded-full bg-[#111] px-3 py-1.5 text-xs font-semibold text-white shadow-[0_12px_26px_-18px_rgba(0,0,0,0.45)]">
                         +${addon.price}
                       </div>
                     </div>
-                    <div className="mt-4 flex items-center justify-between gap-3 border-t border-black/5 pt-3">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-[#A0A0A0]">Available with booking</p>
-                      <span className="text-xs font-semibold text-[#111] transition-transform group-hover:translate-x-1">
+                    <div className="mt-5 rounded-[14px] border border-[#ECEDE6] bg-[#F7F8F3] px-4 py-3">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A8A82]">Available with booking</p>
+                      <p className="mt-1 text-sm leading-6 text-[#56564F]">Mention this add-on when requesting your visit.</p>
+                      <span className="hidden">
                         Add to visit →
                       </span>
                     </div>

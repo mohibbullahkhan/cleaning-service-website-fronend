@@ -2,18 +2,20 @@ import { bookingServices, type BookingServiceKey } from "@/components/booking/bo
 import BookingFlow from "@/components/booking/BookingFlow";
 
 type BookingPageProps = {
-  searchParams?: {
-    service?: string;
-  };
+  searchParams?: Promise<{
+    service?: string | string[];
+  }>;
 };
 
-export default function BookingPage({ searchParams }: BookingPageProps) {
-  const initialService = bookingServices.some((item) => item.key === searchParams?.service)
-    ? (searchParams?.service as BookingServiceKey)
+export default async function BookingPage({ searchParams }: BookingPageProps) {
+  const params = await searchParams;
+  const serviceParam = Array.isArray(params?.service) ? params.service[0] : params?.service;
+  const initialService = bookingServices.some((item) => item.key === serviceParam)
+    ? (serviceParam as BookingServiceKey)
     : null;
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(232,82,26,0.08),transparent_32%),linear-gradient(180deg,#F7F5EF_0%,#FAFAF8_100%)] pt-4 md:pt-8">
+    <main className="min-h-screen bg-[#F6F7F3] pt-3 md:pt-6">
       <BookingFlow mode="page" initialServiceKey={initialService} />
     </main>
   );

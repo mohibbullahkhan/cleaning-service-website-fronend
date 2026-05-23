@@ -20,7 +20,7 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
 
   return (
     <main className="bg-[#FAFAF8]">
-      <section className="px-6 md:px-12 lg:px-24 pt-8 md:pt-10">
+      <section className="px-6 md:px-12 lg:px-24 pt-6 md:pt-7">
         <div className="max-w-7xl mx-auto">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-[#666] transition-colors hover:text-[#111]">
             <span className="text-base">&larr;</span>
@@ -29,20 +29,20 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
         </div>
       </section>
 
-      <section className="px-6 md:px-12 lg:px-24 py-8 md:py-10">
+      <section className="px-6 md:px-12 lg:px-24 py-6 md:py-7">
         <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-[minmax(0,1.45fr)_340px] items-start">
           <article className="overflow-hidden rounded-[32px] border border-black/5 bg-white shadow-[0_30px_110px_-45px_rgba(0,0,0,0.2)]">
-            <div className="relative aspect-[16/9]">
+            <div className="relative aspect-[16/10] min-h-[300px] max-h-[520px] md:aspect-[21/9]">
               <Image src={post.image} alt={post.title} fill className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10 text-white">
-                <div className="inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em]">
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white md:p-7 lg:p-8">
+                <div className="inline-flex rounded-full bg-white/10 backdrop-blur px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.24em]">
                   Editor&apos;s pick
                 </div>
-                <h1 className="mt-4 max-w-4xl text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.045em] leading-[1.05]">
+                <h1 className="mt-3 max-w-4xl text-[clamp(1.45rem,3vw,2.45rem)] font-semibold tracking-[-0.02em] leading-[1.08]">
                   {post.title}
                 </h1>
-                <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/72">
+                <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-white/72">
                   <span>{post.date}</span>
                   <span>&bull;</span>
                   <span>{post.readTime}</span>

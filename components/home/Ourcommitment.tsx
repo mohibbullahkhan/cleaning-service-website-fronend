@@ -134,7 +134,10 @@ export default function OurCommitment() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#E8521A]" />
                                 <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">Flexibility</span>
                             </div>
-                            <h3 className="text-[26px] font-medium text-[#111] leading-[1.2] tracking-tight ">Cleaning That Fits Your Schedule</h3>
+                            <h3 className="text-[26px] font-medium text-[#111] leading-[1.2] tracking-tight max-w-none w-auto">
+                                <span className="whitespace-nowrap">Cleaning That Fits</span> <br />
+                                <span className="whitespace-nowrap">Your Schedule</span>
+                            </h3>
                         </div>
                     </motion.div>
 

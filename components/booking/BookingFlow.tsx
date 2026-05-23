@@ -110,26 +110,28 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
     setStep((current) => Math.min(current + 1, bookingSteps.length - 1));
   };
 
-  const softCard = "border-black/10 bg-[linear-gradient(180deg,#FFFFFF_0%,#FBFBFA_100%)] hover:-translate-y-0.5 hover:border-black/20 hover:shadow-[0_18px_45px_-28px_rgba(0,0,0,0.18)]";
+  const softCard =
+    "border-[#D9DAD2] bg-white text-[#151515] hover:border-[#B8BAB0] hover:shadow-[0_14px_28px_-24px_rgba(0,0,0,0.26)]";
+  const activeCard = "border-[#E8521A] bg-[#E8521A] text-white shadow-[0_16px_32px_-22px_rgba(232,82,26,0.65)]";
 
   return (
-    <section className={mode === "modal" ? "w-full p-4 sm:p-6 md:p-8" : "px-6 md:px-12 lg:px-24 pb-20 md:pb-28"}>
+    <section className={mode === "modal" ? "w-full p-4 sm:p-6 md:p-8" : "px-4 sm:px-6 md:px-10 lg:px-16 pb-16 md:pb-24"}>
       <div className={mode === "modal" ? "mx-auto max-w-7xl space-y-6" : "mx-auto max-w-7xl space-y-6 md:space-y-8"}>
-        <div className="relative rounded-[28px] border border-black/5 bg-white/82 p-5 md:p-6 lg:p-7 shadow-[0_28px_90px_-42px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1.15fr)_auto] lg:items-end">
+        <div className="relative rounded-[12px] border border-[#D9DAD2] bg-white p-4 shadow-[0_18px_48px_-38px_rgba(0,0,0,0.24)] sm:p-5 md:p-6">
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
             <div className="max-w-2xl">
-              <p className="font-subtitle text-[10px] font-semibold uppercase tracking-[0.32em] text-[#8A8A8A]">
+              <p className="text-xs font-semibold text-[#62625C]">
                 Booking
               </p>
-              <h1 className="mt-3 text-[clamp(1.25rem,1.9vw,1.65rem)] font-semibold tracking-[-0.035em] text-[#111] leading-[1.1]">
+              <h1 className="mt-1.5 text-[1.05rem] font-semibold leading-[1.25] tracking-normal text-[#111] md:text-[1.25rem]">
                 Book your cleaning
               </h1>
-              <p className="font-subtitle mt-3 max-w-xl text-[13px] md:text-[14px] leading-[1.65] text-[#666]">
-                Premium service planning with clear timing, a live estimate, and a smooth confirmation flow.
+              <p className="mt-2 max-w-xl text-[14px] leading-6 text-[#4D4D45] md:text-[15px]">
+                Pick service, schedule time, share details, and confirm in minutes.
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
+            <div className="grid gap-2 sm:grid-cols-3">
               {[
                 ["No payment", "due today"],
                 ["Fast reply", "within hours"],
@@ -137,10 +139,10 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
               ].map(([label, value]) => (
                 <div
                   key={label}
-                  className="min-w-[96px] rounded-[15px] border border-black/5 bg-[linear-gradient(180deg,#FFFFFF_0%,#FBFBFA_100%)] px-3 py-2.5 shadow-[0_12px_28px_-24px_rgba(0,0,0,0.16)] backdrop-blur"
+                  className="min-w-[112px] rounded-[10px] border border-[#E2E3DC] bg-[#F8F9F4] px-3 py-2.5"
                 >
-                  <p className="text-[8.5px] uppercase tracking-[0.26em] text-[#9A9A9A]">{label}</p>
-                  <p className="mt-1 text-[13px] font-semibold text-[#111]">{value}</p>
+                  <p className="text-[12px] font-medium leading-5 text-[#686861]">{label}</p>
+                  <p className="text-[14px] font-semibold leading-5 text-[#151515]">{value}</p>
                 </div>
               ))}
             </div>
@@ -151,16 +153,16 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
               type="button"
               onClick={onClose}
               aria-label="Close booking flow"
-              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-[#111] shadow-sm transition-colors hover:bg-black hover:text-white"
+              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-[#D9DAD2] bg-white text-[#111] shadow-sm transition-colors hover:border-[#E8521A]/35 hover:text-[#E8521A]"
             >
-              ×
+              &times;
             </button>
           )}
         </div>
 
-        <div className="h-1.5 overflow-hidden rounded-full bg-black/5">
+        <div className="h-1.5 overflow-hidden rounded-full bg-[#E4E5DE]">
           <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-[#111] via-[#4A4A4A] to-[#E8521A]"
+            className="h-full rounded-full bg-[#E8521A]"
             initial={false}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.35, ease: "easeOut" }}
@@ -178,28 +180,28 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                     key={item}
                     type="button"
                     onClick={() => setStep(index)}
-                    className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2.5 text-left transition-all ${
+                    className={`inline-flex items-center gap-2 rounded-[10px] border px-3 py-2 text-left transition-all ${
                       active
-                        ? "border-[#111] bg-[#111] text-white shadow-[0_18px_42px_-26px_rgba(0,0,0,0.45)]"
-                        : "border-black/10 bg-white/80 text-[#6F6F6F] hover:-translate-y-0.5 hover:border-black/20 hover:bg-white"
+                        ? "border-[#E8521A] bg-[#E8521A] text-white"
+                        : "border-[#D9DAD2] bg-white text-[#4F4F49] hover:border-[#E8521A]/45"
                     }`}
                   >
-                    <span className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-semibold ${active ? "bg-white/12 text-white" : "bg-black/5 text-[#111]"}`}>
+                    <span className={`flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold ${active ? "bg-white/15 text-white" : "bg-[#FFF1EA] text-[#E8521A]"}`}>
                       {index + 1}
                     </span>
-                    <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.16em]">{item}</span>
+                    <span className="text-[12px] font-semibold leading-5">{item}</span>
                   </button>
                 );
               })}
             </div>
 
             {errors.length > 0 && (
-              <div className="mb-5 rounded-[16px] border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+              <div className="mb-5 rounded-[10px] border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
                 {errors[0]}
               </div>
             )}
 
-            <div className="rounded-[28px] border border-black/5 bg-[linear-gradient(180deg,#FFFFFF_0%,#FCFCFA_100%)] p-5 sm:p-6 md:p-7 shadow-[0_24px_80px_-34px_rgba(0,0,0,0.14)]">
+            <div className="rounded-[12px] border border-[#D9DAD2] bg-white p-5 shadow-[0_18px_50px_-38px_rgba(0,0,0,0.22)] sm:p-6 md:p-7">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div
@@ -210,21 +212,21 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                     exit="exit"
                     className="py-10 text-center sm:py-14"
                   >
-                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#111] text-white shadow-[0_18px_40px_-20px_rgba(0,0,0,0.45)]">
-                      ✓
+                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#E8521A] text-white shadow-[0_18px_40px_-20px_rgba(232,82,26,0.45)]">
+                      &#10003;
                     </div>
-                    <h2 className="text-2xl md:text-[2rem] font-semibold tracking-[-0.03em] text-[#111]">
+                    <h2 className="text-2xl font-semibold tracking-normal text-[#111] md:text-[2rem]">
                       Booking received
                     </h2>
-                    <p className="font-subtitle mx-auto mt-4 max-w-xl text-[14px] md:text-[15px] leading-7 text-[#666]">
+                    <p className="mx-auto mt-4 max-w-xl text-[15px] leading-7 text-[#4D4D45] md:text-[16px]">
                       Our team will review the details and confirm your appointment shortly.
                     </p>
-                    <p className="font-subtitle mx-auto mt-4 max-w-xl text-sm leading-7 text-[#666]">
+                    <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#4D4D45]">
                       No payment due today. Your card is only collected after the booking is confirmed by our team.
                     </p>
                     {onClose && (
                       <div className="mt-8 flex justify-center">
-                        <Button variant="black" onClick={onClose}>
+                        <Button variant="primary" onClick={onClose}>
                           Close
                         </Button>
                       </div>
@@ -233,13 +235,13 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                 ) : step === 0 ? (
                   <motion.div key="service" variants={stepVariants} initial="initial" animate="animate" exit="exit">
                     <div className="mb-6">
-                      <p className="font-subtitle text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">
+                      <p className="text-xs font-semibold text-[#696963]">
                         Step 1
                       </p>
-                      <h2 className="mt-3 text-[1.2rem] md:text-[1.38rem] font-semibold tracking-[-0.03em] text-[#111]">
+                      <h2 className="mt-2 text-[1.18rem] font-semibold tracking-normal text-[#111] md:text-[1.35rem]">
                         Select your service
                       </h2>
-                      <p className="font-subtitle mt-2.5 max-w-2xl text-[13px] md:text-[14px] leading-[1.65] text-[#666]">
+                      <p className="mt-2.5 max-w-2xl text-[14px] leading-6 text-[#4D4D45] md:text-[15px]">
                         Choose the cleaning scope that best matches your space. You can refine everything later.
                       </p>
                     </div>
@@ -253,17 +255,17 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                             key={service.key}
                             type="button"
                             onClick={() => setSelectedServiceKey(service.key)}
-                            className={`group relative overflow-hidden rounded-[18px] border p-4 text-left transition-all duration-300 ${
+                            className={`group relative overflow-hidden rounded-[10px] border p-4 text-left transition-all duration-300 sm:p-5 ${
                               active
-                                ? "border-[#111] bg-[#111] text-white shadow-[0_20px_55px_-28px_rgba(0,0,0,0.48)]"
+                                ? activeCard
                                 : `${softCard}`
                             }`}
                           >
                             {active && <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.accent}`} />}
                             <div className="flex items-start gap-3.5">
                               <div
-                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-[10px] font-semibold tracking-[0.22em] ${
-                                  active ? "border-white/10 bg-white/10 text-white" : "border-black/10 bg-[#FAFAF8] text-[#111]"
+                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-[11px] font-semibold ${
+                                  active ? "border-white/20 bg-white/15 text-white" : "border-[#E8521A]/20 bg-[#FFF3EC] text-[#E8521A]"
                                 }`}
                               >
                                 {serviceIcons[service.key]}
@@ -272,12 +274,12 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                 <div className="flex items-start justify-between gap-4">
                                   <div>
                                     <p className="text-[15px] font-semibold leading-tight md:text-[16px]">{service.title}</p>
-                                    <p className={`font-subtitle mt-1 text-[12px] leading-5.5 ${active ? "text-white/70" : "text-[#666]"}`}>
+                                    <p className={`mt-1.5 text-[13px] leading-6 ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
                                       {service.description}
                                     </p>
                                   </div>
                                   <div className="shrink-0 text-right">
-                                    <p className="text-[8.5px] uppercase tracking-[0.26em] text-current/55">From</p>
+                                    <p className={`text-[12px] font-medium ${active ? "text-white/75" : "text-[#696963]"}`}>From</p>
                                     <p className="mt-1 text-[15px] font-semibold">${service.price}</p>
                                   </div>
                                 </div>
@@ -291,13 +293,13 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                 ) : step === 1 ? (
                   <motion.div key="schedule" variants={stepVariants} initial="initial" animate="animate" exit="exit">
                     <div className="mb-6">
-                      <p className="font-subtitle text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">
+                      <p className="text-xs font-semibold text-[#696963]">
                         Step 2
                       </p>
-                      <h2 className="mt-3 text-[1.2rem] md:text-[1.38rem] font-semibold tracking-[-0.03em] text-[#111]">
+                      <h2 className="mt-2 text-[1.18rem] font-semibold tracking-normal text-[#111] md:text-[1.35rem]">
                         Pick a date and time
                       </h2>
-                      <p className="font-subtitle mt-2.5 max-w-2xl text-[13px] md:text-[14px] leading-[1.65] text-[#666]">
+                      <p className="mt-2.5 max-w-2xl text-[14px] leading-6 text-[#4D4D45] md:text-[15px]">
                         Select an available day and a premium time window that suits your schedule.
                       </p>
                     </div>
@@ -305,8 +307,8 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                     <div className="space-y-6">
                       <div>
                         <div className="mb-3 flex items-center justify-between gap-3">
-                          <span className="font-subtitle text-sm font-medium text-[#333]">Date</span>
-                          <span className="font-subtitle text-xs text-[#888]">Sundays are unavailable</span>
+                          <span className="text-sm font-semibold text-[#272727]">Date</span>
+                          <span className="text-xs text-[#686861]">Sundays are unavailable</span>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
                           {availableDates.map((date) => {
@@ -318,17 +320,17 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                 type="button"
                                 disabled={date.disabled}
                                 onClick={() => setSelectedDate(date.value)}
-                                className={`rounded-[16px] border px-4 py-3.5 text-left transition-all duration-300 ${
+                                className={`rounded-[10px] border px-4 py-3.5 text-left transition-all duration-300 ${
                                   date.disabled
-                                    ? "cursor-not-allowed border-black/5 bg-[#F5F4F1] text-[#BABABA] opacity-70"
+                                    ? "cursor-not-allowed border-[#E1E1DB] bg-[#F1F2EC] text-[#9A9A92] opacity-80"
                                     : active
-                                      ? "border-[#111] bg-[#111] text-white shadow-[0_18px_46px_-26px_rgba(0,0,0,0.46)]"
+                                      ? activeCard
                                       : `${softCard}`
                                 }`}
                               >
-                                <p className="text-[8.5px] uppercase tracking-[0.26em] text-current/50">Available</p>
+                                <p className="text-[12px] font-medium text-current/70">Available</p>
                                 <p className="mt-2 text-[13px] font-semibold">{date.label}</p>
-                                <p className={`font-subtitle mt-1 text-xs ${active ? "text-white/70" : "text-[#777]"}`}>
+                                <p className={`mt-1 text-xs ${active ? "text-white/88" : "text-[#5C5C55]"}`}>
                                   {date.disabled ? "Unavailable" : "Tap to select"}
                                 </p>
                               </button>
@@ -339,8 +341,8 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
 
                       <div>
                         <div className="mb-3 flex items-center justify-between gap-3">
-                          <span className="font-subtitle text-sm font-medium text-[#333]">Time slot</span>
-                          <span className="font-subtitle text-xs text-[#888]">Choose your preferred window</span>
+                          <span className="text-sm font-semibold text-[#272727]">Time slot</span>
+                          <span className="text-xs text-[#686861]">Choose your preferred window</span>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-3">
                           {bookingTimeSlots.map((slot) => {
@@ -351,14 +353,14 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                 key={slot.value}
                                 type="button"
                                 onClick={() => setSelectedTime(slot.value)}
-                                className={`rounded-[16px] border px-4 py-3.5 text-left transition-all ${
+                                className={`rounded-[10px] border px-4 py-3.5 text-left transition-all ${
                                   active
-                                    ? "border-[#111] bg-[#111] text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.45)]"
+                                    ? activeCard
                                     : `${softCard}`
                                 }`}
                               >
                                 <p className="text-[14px] font-semibold">{slot.label}</p>
-                                <p className={`font-subtitle mt-1 text-[13px] ${active ? "text-white/70" : "text-[#666]"}`}>
+                                <p className={`mt-1 text-[13px] ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
                                   {slot.value}
                                 </p>
                               </button>
@@ -371,13 +373,13 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                 ) : step === 2 ? (
                   <motion.div key="details" variants={stepVariants} initial="initial" animate="animate" exit="exit">
                     <div className="mb-6">
-                      <p className="font-subtitle text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">
+                      <p className="text-xs font-semibold text-[#696963]">
                         Step 3
                       </p>
-                      <h2 className="mt-3 text-[1.2rem] md:text-[1.38rem] font-semibold tracking-[-0.03em] text-[#111]">
+                      <h2 className="mt-2 text-[1.18rem] font-semibold tracking-normal text-[#111] md:text-[1.35rem]">
                         Your details
                       </h2>
-                      <p className="font-subtitle mt-2.5 max-w-2xl text-[13px] md:text-[14px] leading-[1.65] text-[#666]">
+                      <p className="mt-2.5 max-w-2xl text-[14px] leading-6 text-[#4D4D45] md:text-[15px]">
                         Share the essentials so we can confirm the visit and make arrival feel effortless.
                       </p>
                     </div>
@@ -391,30 +393,30 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                         { label: "Service address", key: "address", type: "text", placeholder: "Street, city, area" },
                       ].map((field) => (
                         <label key={field.key} className="grid gap-2 md:col-span-1">
-                          <span className="font-subtitle text-sm font-medium text-[#333]">{field.label}</span>
+                          <span className="text-sm font-semibold text-[#272727]">{field.label}</span>
                           <input
                             type={field.type}
                             value={(details as Record<string, string>)[field.key]}
                             onChange={(event) => setDetails((current) => ({ ...current, [field.key]: event.target.value }))}
                             placeholder={field.placeholder}
-                            className="h-12 rounded-[16px] border border-black/10 bg-[#FCFCFA] px-4 text-[14px] text-[#111] outline-none transition focus:border-black/30 focus:bg-white focus:shadow-[0_0_0_4px_rgba(17,17,17,0.04)]"
+                            className="h-12 rounded-[10px] border border-[#D9DAD2] bg-white px-4 text-[15px] text-[#111] outline-none transition placeholder:text-[#8C8C84] focus:border-[#E8521A] focus:shadow-[0_0_0_4px_rgba(232,82,26,0.1)]"
                           />
                         </label>
                       ))}
 
                       <label className="grid gap-2 md:col-span-2">
-                        <span className="font-subtitle text-sm font-medium text-[#333]">Notes</span>
+                        <span className="text-sm font-semibold text-[#272727]">Notes</span>
                         <textarea
                           rows={4}
                           value={details.notes}
                           onChange={(event) => setDetails((current) => ({ ...current, notes: event.target.value }))}
                           placeholder="Anything our team should know before arrival?"
-                          className="rounded-[18px] border border-black/10 bg-[#FCFCFA] px-4 py-4 text-[14px] text-[#111] outline-none transition focus:border-black/30 focus:bg-white focus:shadow-[0_0_0_4px_rgba(17,17,17,0.04)] resize-none"
+                          className="resize-none rounded-[10px] border border-[#D9DAD2] bg-white px-4 py-4 text-[15px] text-[#111] outline-none transition placeholder:text-[#8C8C84] focus:border-[#E8521A] focus:shadow-[0_0_0_4px_rgba(232,82,26,0.1)]"
                         />
                       </label>
 
                       <label className="grid gap-2 md:col-span-2">
-                        <span className="font-subtitle text-sm font-medium text-[#333]">Property size</span>
+                        <span className="text-sm font-semibold text-[#272727]">Property size</span>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
                           {bookingPropertySizes.map((option) => {
                             const active = details.propertySize === option.label;
@@ -424,14 +426,14 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                 key={option.label}
                                 type="button"
                                 onClick={() => setDetails((current) => ({ ...current, propertySize: option.label }))}
-                                className={`rounded-[16px] border px-4 py-3 text-center transition-all ${
+                                className={`rounded-[10px] border px-4 py-3 text-center transition-all ${
                                   active
-                                    ? "border-[#111] bg-[#111] text-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.45)]"
+                                    ? activeCard
                                     : `${softCard}`
                                 }`}
                               >
                                 <p className="text-[14px] font-semibold">{option.label}</p>
-                                <p className={`font-subtitle mt-1 text-[12px] ${active ? "text-white/70" : "text-[#666]"}`}>
+                                <p className={`mt-1 text-[12px] ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
                                   x{option.multiplier.toFixed(2)}
                                 </p>
                               </button>
@@ -444,13 +446,13 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                 ) : (
                   <motion.div key="review" variants={stepVariants} initial="initial" animate="animate" exit="exit">
                     <div className="mb-6">
-                      <p className="font-subtitle text-[10px] font-semibold uppercase tracking-[0.3em] text-[#8A8A8A]">
+                      <p className="text-xs font-semibold text-[#696963]">
                         Step 4
                       </p>
-                      <h2 className="mt-3 text-[1.2rem] md:text-[1.38rem] font-semibold tracking-[-0.03em] text-[#111]">
+                      <h2 className="mt-2 text-[1.18rem] font-semibold tracking-normal text-[#111] md:text-[1.35rem]">
                         Review & confirm
                       </h2>
-                      <p className="font-subtitle mt-2.5 max-w-2xl text-[13px] md:text-[14px] leading-[1.65] text-[#666]">
+                      <p className="mt-2.5 max-w-2xl text-[14px] leading-6 text-[#4D4D45] md:text-[15px]">
                         Take a quick look before we finalize the request with our team.
                       </p>
                     </div>
@@ -468,15 +470,15 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                       ].map(([label, value]) => (
                         <div
                           key={label}
-                          className="flex items-center justify-between gap-4 rounded-[16px] border border-black/10 bg-[linear-gradient(180deg,#FFFFFF_0%,#FBFBFA_100%)] px-4 py-3.5"
+                          className="flex flex-col gap-1 rounded-[10px] border border-[#D9DAD2] bg-[#FAFAF7] px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                         >
-                          <span className="font-subtitle text-sm font-medium text-[#666]">{label}</span>
-                          <span className="max-w-[55%] text-right text-sm font-semibold text-[#111]">{value}</span>
+                          <span className="text-sm font-medium text-[#5C5C55]">{label}</span>
+                          <span className="max-w-full text-sm font-semibold text-[#111] sm:max-w-[60%] sm:text-right">{value}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-6 grid gap-3 rounded-[20px] border border-black/5 bg-[#F7F7F4] p-4 text-[13px] leading-[1.65] text-[#5A5A5A]">
+                    <div className="mt-6 grid gap-3 rounded-[10px] border border-[#E1E2DA] bg-[#F7F8F3] p-4 text-[14px] leading-6 text-[#4D4D45]">
                       <p>Final price may adjust after walkthrough for unusual scope.</p>
                       <p>No payment due today. Your card is only collected after the booking is confirmed by our team.</p>
                     </div>
@@ -495,7 +497,7 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                   </Button>
 
                   {step < bookingSteps.length - 1 ? (
-                    <Button variant="black" onClick={goNext} showArrow>
+                    <Button variant="primary" onClick={goNext} showArrow>
                       Continue
                     </Button>
                   ) : (
@@ -509,54 +511,45 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
           </div>
 
           <aside className="lg:sticky lg:top-8">
-            <div className="relative overflow-hidden rounded-[28px] border border-black/5 bg-[linear-gradient(180deg,#111_0%,#161616_100%)] p-6 text-white shadow-[0_28px_80px_-34px_rgba(0,0,0,0.48)] sm:p-7">
-              <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${selectedService.accent}`} />
-              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_32%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_28%)]" />
-              <div className="relative">
-                <p className="font-subtitle text-[9px] font-semibold uppercase tracking-[0.3em] text-white/45">
+            <div className="rounded-[12px] border border-[#D9DAD2] bg-white p-5 text-[#111] shadow-[0_18px_50px_-38px_rgba(0,0,0,0.24)] sm:p-6">
+              <div className="h-1 w-16 rounded-full bg-[#E8521A]" />
+              <div className="mt-5">
+                <p className="text-sm font-semibold text-[#696963]">
                   Live estimate
                 </p>
                 <div className="mt-5 flex items-start justify-between gap-4">
                   <div>
-                    <p className="font-subtitle text-[13px] text-white/60">Estimated total</p>
-                    <p className="mt-1 text-[clamp(1.7rem,2.6vw,2.25rem)] font-semibold tracking-[-0.04em]">${estimatedPrice}</p>
+                    <p className="text-[14px] text-[#4D4D45]">Estimated total</p>
+                    <p className="mt-1 text-[2rem] font-semibold leading-none tracking-normal text-[#111] md:text-[2.25rem]">${estimatedPrice}</p>
                   </div>
-                  <div className="rounded-full border border-white/10 bg-white/8 px-3 py-2 text-sm text-white/80">
+                  <div className="rounded-[10px] border border-[#F0C3AE] bg-[#FFF3EC] px-3 py-2 text-sm font-semibold text-[#C74713]">
                     {selectedSize.label}
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-[22px] border border-white/10 bg-white/6 p-4 backdrop-blur">
+                <div className="mt-6 border-t border-[#E5E6DF] pt-5">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.24em] text-white/40">Selected service</p>
-                      <p className="mt-2 text-[15px] font-semibold">{selectedService.title}</p>
-                      <p className="font-subtitle mt-2 text-[13px] leading-6 text-white/60">{selectedService.description}</p>
+                      <p className="text-[13px] font-medium text-[#696963]">Selected service</p>
+                      <p className="mt-2 text-[16px] font-semibold text-[#111]">{selectedService.title}</p>
+                      <p className="mt-2 text-[14px] leading-6 text-[#4D4D45]">{selectedService.description}</p>
                     </div>
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10 text-xs font-semibold tracking-[0.22em] text-white/80">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#F0C3AE] bg-[#FFF3EC] text-xs font-semibold text-[#E8521A]">
                       {serviceIcons[selectedService.key]}
                     </div>
                   </div>
-                  <div className="my-4 h-px bg-white/10" />
-                  <div className="grid gap-2 text-sm text-white/75">
-                    <p>Property size: {details.propertySize}</p>
-                    <p>Date: {selectedDate || "Choose a preferred date"}</p>
-                    <p>Time: {selectedTime}</p>
-                    <p>Location: {details.address || "Add your address"}</p>
-                    <p>Unit: {details.apartmentUnit || "Add your unit number"}</p>
+                  <div className="my-4 h-px bg-[#E5E6DF]" />
+                  <div className="grid gap-2 text-[14px] leading-6 text-[#3E3E38]">
+                    <p><span className="font-semibold text-[#111]">Property size:</span> {details.propertySize}</p>
+                    <p><span className="font-semibold text-[#111]">Date:</span> {selectedDate || "Choose a preferred date"}</p>
+                    <p><span className="font-semibold text-[#111]">Time:</span> {selectedTime}</p>
+                    <p><span className="font-semibold text-[#111]">Location:</span> {details.address || "Add your address"}</p>
+                    <p><span className="font-semibold text-[#111]">Unit:</span> {details.apartmentUnit || "Add your unit number"}</p>
                   </div>
                 </div>
 
-                <div className="mt-5 grid gap-3">
-                  <div className="rounded-[16px] border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/75">
-                    Clean, careful service tailored to your selected scope.
-                  </div>
-                  <div className="rounded-[16px] border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/75">
-                    Flexible scheduling across the day.
-                  </div>
-                  <div className="rounded-[16px] border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/75">
-                    Final confirmation handled by our team.
-                  </div>
+                <div className="mt-5 rounded-[10px] border border-[#E1E2DA] bg-[#F7F8F3] px-4 py-3 text-[14px] leading-6 text-[#4D4D45]">
+                  Clean service, flexible timing, and quick team confirmation.
                 </div>
               </div>
             </div>
