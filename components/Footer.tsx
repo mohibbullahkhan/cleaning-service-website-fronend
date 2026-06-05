@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Button from "./ui/Button";
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -106,12 +107,22 @@ export default function Footer() {
             </ul>
 
             <div className="flex gap-4 pt-4">
-              {['facebook', 'instagram', 'twitter', 'linkedin'].map((social) => (
-                <Link key={social} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-all">
-                  <span className="sr-only">{social}</span>
-                  <div className="text-xs font-bold uppercase tracking-tighter">{social.slice(0, 2)}</div>
-                </Link>
-              ))}
+              <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-all">
+                <span className="sr-only">Facebook</span>
+                <FaFacebook size={18} />
+              </Link>
+              <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-all">
+                <span className="sr-only">Instagram</span>
+                <FaInstagram size={18} />
+              </Link>
+              <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-all">
+                <span className="sr-only">Twitter</span>
+                <FaTwitter size={18} />
+              </Link>
+              <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white hover:text-black transition-all">
+                <span className="sr-only">LinkedIn</span>
+                <FaLinkedin size={18} />
+              </Link>
             </div>
           </div>
         </div>

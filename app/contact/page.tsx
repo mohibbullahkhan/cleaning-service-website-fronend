@@ -78,18 +78,18 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="rounded-[28px] border border-black/5 bg-[linear-gradient(135deg,#111_0%,#171717_60%,#221c19_100%)] p-6 md:p-7 text-white shadow-[0_24px_80px_-36px_rgba(0,0,0,0.32)] overflow-hidden relative">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(232,82,26,0.12),transparent_24%)]" />
+            <div className="rounded-[28px] border border-[#E4E5DC] bg-[#F7F8F3] p-6 md:p-7 text-[#111] shadow-[0_24px_80px_-46px_rgba(0,0,0,0.22)] overflow-hidden relative">
+              <div className="absolute top-0 right-0 h-[400px] w-[400px] translate-x-1/3 -translate-y-1/3 rounded-full bg-[#E8521A]/5 blur-[80px]" />
               <div className="relative">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">Need something faster?</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#E8521A]">Need something faster?</p>
                 <h3 className="mt-4 text-[clamp(1.5rem,2.2vw,2rem)] font-semibold tracking-[-0.03em] leading-[1.15]">
                   Open the booking flow and pick a service instantly.
                 </h3>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <BookButton variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                  <BookButton variant="primary" className="shadow-[0_16px_34px_-22px_rgba(232,82,26,0.7)]">
                     Book Now
                   </BookButton>
-                  <Button href="/pricing" variant="outline" className="!border-white/14 !bg-white/5 !text-white hover:!bg-white hover:!text-[#111]">
+                  <Button href="/pricing" variant="outline" className="!border-[#E8521A]/30 !bg-white !text-[#E8521A] hover:!bg-[#E8521A] hover:!text-white">
                     View Pricing
                   </Button>
                 </div>

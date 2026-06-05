@@ -273,14 +273,14 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                               <div className="min-w-0 flex-1">
                                 <div className="flex items-start justify-between gap-4">
                                   <div>
-                                    <p className="text-[15px] font-semibold leading-tight md:text-[16px]">{service.title}</p>
-                                    <p className={`mt-1.5 text-[13px] leading-6 ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
+                                    <p className={`text-[15px] font-semibold leading-tight md:text-[16px] ${active ? "!text-white" : "text-[#111]"}`}>{service.title}</p>
+                                    <p className={`mt-1.5 text-[13px] leading-6 ${active ? "!text-white" : "text-[#4D4D45]"}`}>
                                       {service.description}
                                     </p>
                                   </div>
                                   <div className="shrink-0 text-right">
-                                    <p className={`text-[12px] font-medium ${active ? "text-white/75" : "text-[#696963]"}`}>From</p>
-                                    <p className="mt-1 text-[15px] font-semibold">${service.price}</p>
+                                    <p className={`text-[12px] font-medium ${active ? "!text-white" : "text-[#696963]"}`}>From</p>
+                                    <p className={`mt-1 text-[15px] font-semibold ${active ? "!text-white" : "text-[#111]"}`}>${service.price}</p>
                                   </div>
                                 </div>
                               </div>
@@ -328,9 +328,9 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                       : `${softCard}`
                                 }`}
                               >
-                                <p className="text-[12px] font-medium text-current/70">Available</p>
-                                <p className="mt-2 text-[13px] font-semibold">{date.label}</p>
-                                <p className={`mt-1 text-xs ${active ? "text-white/88" : "text-[#5C5C55]"}`}>
+                                <p className={`text-[12px] font-medium ${active ? "!text-white" : "text-current/70"}`}>Available</p>
+                                <p className={`mt-2 text-[13px] font-semibold ${active ? "!text-white" : "text-[#111]"}`}>{date.label}</p>
+                                <p className={`mt-1 text-xs ${active ? "!text-white" : "text-[#5C5C55]"}`}>
                                   {date.disabled ? "Unavailable" : "Tap to select"}
                                 </p>
                               </button>
@@ -359,8 +359,8 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                     : `${softCard}`
                                 }`}
                               >
-                                <p className="text-[14px] font-semibold">{slot.label}</p>
-                                <p className={`mt-1 text-[13px] ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
+                                <p className={`text-[14px] font-semibold ${active ? "!text-white" : "text-[#111]"}`}>{slot.label}</p>
+                                <p className={`mt-1 text-[13px] ${active ? "!text-white" : "text-[#4D4D45]"}`}>
                                   {slot.value}
                                 </p>
                               </button>
@@ -432,8 +432,8 @@ export default function BookingFlow({ initialServiceKey = null, onClose, mode = 
                                     : `${softCard}`
                                 }`}
                               >
-                                <p className="text-[14px] font-semibold">{option.label}</p>
-                                <p className={`mt-1 text-[12px] ${active ? "text-white/88" : "text-[#4D4D45]"}`}>
+                                <p className={`text-[14px] font-semibold ${active ? "!text-white" : "text-[#111]"}`}>{option.label}</p>
+                                <p className={`mt-1 text-[12px] ${active ? "!text-white" : "text-[#4D4D45]"}`}>
                                   x{option.multiplier.toFixed(2)}
                                 </p>
                               </button>

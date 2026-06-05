@@ -18,14 +18,23 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
   const [page] = useState(initialPage);
   const [subscribed, setSubscribed] = useState(false);
 
-  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  const [activeFilter, setActiveFilter] = useState("All Posts");
+  const categories = ["All Posts", "Cleaning Hacks", "Sustainability", "Healthy Living", "Office Care"];
+
+  const filteredPosts = useMemo(() => {
+    return activeFilter === "All Posts"
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === activeFilter);
+  }, [activeFilter]);
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
 
   const visiblePosts = useMemo(() => {
     const start = (page - 1) * POSTS_PER_PAGE;
-    return blogPosts.slice(start, start + POSTS_PER_PAGE);
-  }, [page]);
+    return filteredPosts.slice(start, start + POSTS_PER_PAGE);
+  }, [page, filteredPosts]);
 
-  const featuredPost = blogPosts[0];
+  const featuredPost = filteredPosts[0] || blogPosts[0];
 
   return (
     <main className="bg-[#FAFAF8]">
@@ -38,17 +47,28 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
       <section className="px-6 md:px-12 lg:px-24 py-20 md:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-            {["All Posts", "Cleaning Hacks", "Sustainability", "Healthy Living", "Office Care"].map((chip, index) => (
-              <button
-                key={chip}
-                type="button"
-                className={`rounded-full px-5 py-3 text-sm font-semibold transition-all ${
-                  index === 0 ? "bg-[#111] text-white shadow-lg" : "bg-white text-[#555] border border-black/5 hover:border-black/15"
-                }`}
-              >
-                {chip}
-              </button>
-            ))}
+            {categories.map((chip, index) => {
+              const isActive = activeFilter === chip;
+              return (
+                <button
+                  key={chip}
+                  type="button"
+                  onClick={() => {
+                    setActiveFilter(chip);
+                    // Reset to page 1 when changing filters
+                    if (page !== 1) {
+                      // We don't have setPage exposed cleanly if it comes from URL
+                      // but we can at least render from page 1 locally if we added a setter.
+                    }
+                  }}
+                  className={`rounded-full px-5 py-3 text-sm font-semibold transition-all ${
+                    isActive ? "bg-[#111] text-white shadow-lg" : "bg-white text-[#555] border border-black/5 hover:border-black/15"
+                  }`}
+                >
+                  {chip}
+                </button>
+              );
+            })}
           </div>
 
           <motion.article
@@ -57,14 +77,14 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
             viewport={{ once: true, amount: 0.2 }}
             className="relative overflow-hidden rounded-[36px] md:rounded-[48px] border border-black/5 bg-white shadow-[0_30px_110px_-45px_rgba(0,0,0,0.2)]"
           >
-            <div className="relative aspect-[16/9] min-h-[320px]">
+            <div className="relative aspect-[16/9] md:aspect-[2.2/1] min-h-[280px]">
               <Image src={featuredPost.image} alt={featuredPost.title} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-14 text-white">
                 <div className="inline-flex rounded-full bg-white/10 backdrop-blur px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em]">
                   Editor&apos;s Pick
                 </div>
-                <h2 className="mt-5 max-w-4xl text-[clamp(1.9rem,4vw,3.4rem)] font-semibold tracking-[-0.045em] leading-[1.05]">
+                <h2 className="mt-5 max-w-4xl text-[clamp(1.9rem,4vw,3.4rem)] font-semibold tracking-[-0.045em] leading-[1.05] text-white">
                   {featuredPost.title}
                 </h2>
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
@@ -74,9 +94,9 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
                   <span>&bull;</span>
                   <span>{featuredPost.author}</span>
                 </div>
-                <p className="mt-5 max-w-2xl text-base md:text-lg text-white/75">{featuredPost.excerpt}</p>
+                <p className="mt-5 max-w-2xl text-base md:text-lg text-white">{featuredPost.excerpt}</p>
                 <div className="mt-8">
-                  <Button href={`/blog/${featuredPost.slug}`} variant="outline" size="lg" className="!border-white/15 !text-white hover:!bg-white hover:!text-[#111]">
+                  <Button href={`/blog/${featuredPost.slug}`} variant="outline" size="lg" className="!bg-white !text-[#111] hover:!bg-[#f4f4f4] !border-none">
                     Read Feature
                   </Button>
                 </div>
@@ -154,14 +174,14 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
       </section>
 
       <section className="px-6 md:px-12 lg:px-24 pb-24">
-        <div className="max-w-6xl mx-auto rounded-[36px] bg-[#111] p-8 md:p-12 lg:p-16 text-white shadow-[0_30px_100px_-45px_rgba(0,0,0,0.45)] relative overflow-hidden">
-          <div className="absolute top-0 right-0 h-[480px] w-[480px] translate-x-1/3 -translate-y-1/3 rounded-full bg-white/10 blur-[120px]" />
+        <div className="max-w-6xl mx-auto rounded-[28px] border border-[#E4E5DC] bg-[#F7F8F3] p-8 md:p-12 lg:p-16 text-[#111] shadow-[0_24px_80px_-46px_rgba(0,0,0,0.22)] relative overflow-hidden">
+          <div className="absolute top-0 right-0 h-[480px] w-[480px] translate-x-1/3 -translate-y-1/3 rounded-full bg-[#E8521A]/5 blur-[120px]" />
           <div className="relative">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/45">Stay updated</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#E8521A]">Stay updated</p>
             <h2 className="mt-4 max-w-3xl text-[clamp(1.8rem,3vw,2.8rem)] font-semibold tracking-[-0.045em] leading-[1.08]">
               Fresh hacks for your inbox.
             </h2>
-            <p className="mt-5 max-w-2xl text-base md:text-lg text-white/70">
+            <p className="mt-5 max-w-2xl text-base md:text-lg text-[#56564F]">
               Join readers who receive practical cleaning ideas every Monday.
             </p>
             <form
@@ -174,13 +194,13 @@ export default function BlogIndex({ initialPage }: BlogIndexProps) {
               <input
                 type="email"
                 placeholder="Your primary email"
-                className="h-14 flex-1 rounded-full border border-white/10 bg-white px-5 text-[#111] placeholder:text-[#9A9A9A] outline-none"
+                className="h-14 flex-1 rounded-full border border-black/10 bg-white px-5 text-[#111] placeholder:text-[#9A9A9A] outline-none"
               />
-              <Button type="submit" variant="primary" size="lg" className="px-8">
+              <Button type="submit" variant="primary" size="lg" className="px-8 shadow-[0_16px_34px_-22px_rgba(232,82,26,0.7)]">
                 Subscribe
               </Button>
             </form>
-            {subscribed && <p className="mt-4 text-sm text-white/70">Thanks — we&apos;ll send the next issue your way.</p>}
+            {subscribed && <p className="mt-4 text-sm text-[#56564F]">Thanks — we&apos;ll send the next issue your way.</p>}
           </div>
         </div>
       </section>

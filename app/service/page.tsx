@@ -11,7 +11,7 @@ const services = [
     title: "Residential Cleaning",
     subtitle: "Perfect for homes",
     desc: "A meticulous cleaning of every room, ensuring your living space stays calm, fresh, and welcoming.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr9KCLp0o65V0Bx3FrAnQayh1eff2w90ulg&s",
+    image: "https://img.magnific.com/free-photo/professional-cleaning-service-person-using-vacuum-cleaner-office_23-2150520594.jpg?semt=ais_hybrid&w=740&q=80",
     features: ["Kitchen sanitization", "Dusting & vacuuming", "Floor mopping", "Bathroom scrubbing"],
     price: "$120",
     bookingService: "residential" as const,

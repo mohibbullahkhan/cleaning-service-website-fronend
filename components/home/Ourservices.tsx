@@ -5,8 +5,8 @@ import Image from "next/image";
 import BookButton from "../booking/BookButton";
 
 const bgImages = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOr9KCLp0o65V0Bx3FrAnQayh1eff2w90ulg&s",
-    "https://images.unsplash.com/photo-1527515637462-cff94edd5be1?w=1600&q=80",
+    "https://img.magnific.com/free-photo/professional-cleaning-service-person-using-vacuum-cleaner-office_23-2150520594.jpg?semt=ais_hybrid&w=740&q=80",
+    "https://images.unsplash.com/photo-1589923158776-cb4485d99fd6?w=800&q=80",
     "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"
 ];
 
